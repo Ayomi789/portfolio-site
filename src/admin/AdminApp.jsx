@@ -51,6 +51,84 @@ function getPassword(reprompt) {
 }
 
 export default function AdminApp() {
+  const isDev = import.meta.env.DEV
+  const [authed, setAuthed] = useState(isDev || sessionStorage.getItem('cms-authed') === '1')
+
+  if (!authed) {
+    return (
+      <LoginScreen
+        onAuthed={(pw) => {
+          sessionStorage.setItem('cms-authed', '1')
+          localStorage.setItem('cms-password', pw)
+          setAuthed(true)
+        }}
+      />
+    )
+  }
+  return <AdminPanel />
+}
+
+function LoginScreen({ onAuthed }) {
+  const [pw, setPw] = useState('')
+  const [error, setError] = useState('')
+  const [checking, setChecking] = useState(false)
+
+  async function submit(e) {
+    e.preventDefault()
+    setChecking(true)
+    setError('')
+    try {
+      const res = await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'X-Admin-Password': pw },
+      })
+      if (!res.ok) {
+        setError('Wrong password — try again')
+        setChecking(false)
+        return
+      }
+      onAuthed(pw)
+    } catch {
+      setError('Could not reach the server — check your connection')
+      setChecking(false)
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-[#fbfcfa] font-sans text-[#101512] grid place-items-center px-6">
+      <form onSubmit={submit} className="w-full max-w-[380px]">
+        <div className="w-[48px] h-[48px] rounded-[14px] bg-[#101512] text-white grid place-items-center font-serif text-[20px]">
+          A
+        </div>
+        <h1 className="mt-6 font-serif text-[32px] tracking-[-0.03em] leading-none">
+          Content management
+        </h1>
+        <p className="mt-2 text-[14px] text-[#5a665d]">Enter the admin password to continue.</p>
+        <input
+          type="password"
+          autoFocus
+          value={pw}
+          onChange={(e) => setPw(e.target.value)}
+          placeholder="Password"
+          className={
+            'mt-6 w-full rounded-[10px] border bg-white px-3 py-2.5 text-[14px] outline-none focus:border-[#0b8f68] ' +
+            (error ? 'border-[#c2542e]' : 'border-[#dde3dd]')
+          }
+        />
+        {error && <div className="mt-2 font-mono text-[11px] text-[#c2542e]">{error}</div>}
+        <button
+          type="submit"
+          disabled={checking || !pw}
+          className="mt-4 w-full px-5 py-2.5 rounded-full bg-[#101512] text-white text-[13px] font-[600] hover:opacity-90 disabled:opacity-40"
+        >
+          {checking ? 'Checking…' : 'Log in'}
+        </button>
+      </form>
+    </div>
+  )
+}
+
+function AdminPanel() {
   const [projects, setProjects] = useState(null)
   const [editing, setEditing] = useState(null) // null = list view, { project, index } = editing a copy
   const [saving, setSaving] = useState(false)
