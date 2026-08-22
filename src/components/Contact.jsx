@@ -47,14 +47,16 @@ export default function Contact() {
               </button>
               <a
                 href="https://github.com/Ayomi789"
-                onClick={(e) => e.preventDefault()}
+                target="_blank"
+                rel="noreferrer"
                 className="h-[44px] px-5 rounded-full bg-white border border-[#dde3dd] inline-flex items-center gap-2 font-[600] text-[13px] hover:border-[#101512] transition"
               >
                 GitHub ↗
               </a>
               <a
-                href="https://www.linkedin.com/in/abdullateef-salako-18764b2a9?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
-                onClick={(e) => e.preventDefault()}
+                href="https://www.linkedin.com/in/abdullateef-salako-18764b2a9"
+                target="_blank"
+                rel="noreferrer"
                 className="h-[44px] px-5 rounded-full bg-white border border-[#dde3dd] inline-flex items-center gap-2 font-[600] text-[13px] hover:border-[#101512] transition"
               >
                 LinkedIn ↗
@@ -110,8 +112,8 @@ export default function Contact() {
       </div>
 
       <div className="border-t border-[#dde3dd]">
-        <div className="max-w-[1360px] mx-auto px-6 lg:px-10 h-[64px] flex items-center justify-between font-mono text-[11px] tracking-[0.06em] uppercase text-[#7a877e]">
-          <div>© {new Date().getFullYear()} Abdullateef Salako — Built with intention, not templates.</div>
+        <div className="max-w-[1360px] mx-auto px-6 lg:px-10 min-h-[64px] py-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 font-mono text-[10px] sm:text-[11px] tracking-[0.06em] uppercase text-[#7a877e]">
+          <div className="max-w-full">© {new Date().getFullYear()} Abdullateef Salako — Built with intention, not templates.</div>
           <div className="hidden md:flex items-center gap-6">
             <span className="flex items-center gap-1.5">
               <span className="w-1 h-1 rounded-full bg-[#0b8f68]"></span> All systems operational

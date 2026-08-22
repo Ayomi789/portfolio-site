@@ -43,18 +43,18 @@ export default function Hero() {
       <div className="relative max-w-[1360px] mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-0">
           {/* left */}
-          <Reveal className="lg:col-span-7">
+          <Reveal className="lg:col-span-7 min-w-0">
             <div className="pt-[56px] lg:pt-[84px] pb-[48px] lg:pb-[88px] lg:pr-[48px] lg:border-r border-[#dde3dd]">
-              <div className="inline-flex items-center gap-2.5 pl-1 pr-3 py-1 rounded-full bg-white border border-[#dde3dd] shadow-card">
-                <span className="w-[24px] h-[24px] rounded-full bg-[#101512] text-white grid place-items-center font-mono text-[10px]">
+              <div className="inline-flex flex-wrap items-center gap-2.5 pl-1 pr-3 py-1 rounded-full bg-white border border-[#dde3dd] shadow-card max-w-full">
+                <span className="w-[24px] h-[24px] rounded-full bg-[#101512] text-white grid place-items-center font-mono text-[10px] shrink-0">
                   ↗
                 </span>
-                <span className="font-mono text-[11px] tracking-[0.06em] uppercase text-[#3b4640]">
+                <span className="font-mono text-[10.5px] sm:text-[11px] tracking-[0.06em] uppercase text-[#3b4640]">
                   Computer Science student → Full-stack & AI builder
                 </span>
               </div>
 
-              <h1 className="mt-8 font-serif font-[400] leading-[0.92] tracking-[-0.04em] text-[clamp(48px,7vw,92px)]">
+              <h1 className="mt-8 font-serif font-[400] leading-[0.92] tracking-[-0.04em] text-[clamp(36px,10vw,92px)]">
                 Building <span className="italic font-[300]">practical</span>
                 <br />
                 AI systems
@@ -91,8 +91,9 @@ export default function Hero() {
                   View systems →
                 </a>
                 <a
-                  href="/Abdullateef-Salako-CV.pdf"
-                  download="Abdullateef-Salako-CV.pdf"
+                  href="/cv/AbdullateefSalako_CV.pdf"
+                  target="_blank"
+                  rel="noreferrer"
                   className="h-[44px] px-6 rounded-full bg-white border border-[#dde3dd] inline-flex items-center gap-2 font-[600] text-[14px] tracking-[-0.01em] hover:border-[#101512] transition"
                 >
                   Contact / CV <span className="font-mono text-[10px] opacity-60">↗</span>
@@ -119,8 +120,8 @@ export default function Hero() {
           </Reveal>
 
           {/* right - engineered card */}
-          <Reveal className="lg:col-span-5" delay={120}>
-            <div className="pt-[24px] lg:pt-[84px] pb-[48px] lg:pl-[40px]">
+          <Reveal className="lg:col-span-5 min-w-0" delay={120}>
+            <div className="pt-[24px] lg:pt-[84px] pb-[48px] lg:pl-[40px] min-w-0">
               <div className="relative rounded-[24px] border border-[#dde3dd] bg-white shadow-soft overflow-hidden">
                 <div className="h-[44px] border-b border-[#dde3dd] px-5 flex items-center justify-between bg-[#f6f8f6]">
                   <div className="flex items-center gap-2.5">

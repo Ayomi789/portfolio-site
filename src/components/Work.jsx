@@ -91,8 +91,8 @@ export default function Work() {
                 <div className="grid lg:grid-cols-12">
                   {/* info */}
                   <div className="lg:col-span-7 p-[24px] lg:p-[32px] flex flex-col">
-                    <div className="flex items-start justify-between gap-6">
-                      <div className="flex gap-4">
+                    <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
+                      <div className="flex gap-4 min-w-0">
                         <div className="w-[44px] h-[44px] rounded-[12px] bg-[#f3f5f3] border border-[#e3e8e3] grid place-items-center font-mono text-[12px] tracking-[0.04em]">
                           {p.n}
                         </div>
@@ -112,13 +112,13 @@ export default function Work() {
                           </div>
                         </div>
                       </div>
-                      <div className="hidden lg:flex items-center gap-1.5">
+                      <div className="flex flex-wrap items-center gap-1.5">
                         {p.link && (
                           <a
                             href={p.link}
                             target="_blank"
                             rel="noreferrer"
-                            className="h-[36px] px-3 rounded-full border border-[#dde3dd] grid place-items-center font-mono text-[11px] hover:bg-[#101512] hover:text-white hover:border-[#101512] transition"
+                            className="h-[32px] sm:h-[36px] px-3 rounded-full border border-[#dde3dd] grid place-items-center font-mono text-[10.5px] sm:text-[11px] hover:bg-[#101512] hover:text-white hover:border-[#101512] transition"
                             aria-label={`${p.name} live demo`}
                           >
                             Live ↗
@@ -129,7 +129,7 @@ export default function Work() {
                             href={p.repo}
                             target="_blank"
                             rel="noreferrer"
-                            className="h-[36px] px-3 rounded-full border border-[#dde3dd] grid place-items-center font-mono text-[11px] hover:bg-[#101512] hover:text-white hover:border-[#101512] transition"
+                            className="h-[32px] sm:h-[36px] px-3 rounded-full border border-[#dde3dd] grid place-items-center font-mono text-[10.5px] sm:text-[11px] hover:bg-[#101512] hover:text-white hover:border-[#101512] transition"
                             aria-label={`${p.name} GitHub repo`}
                           >
                             GitHub ↗
@@ -205,12 +205,12 @@ export default function Work() {
             className="absolute inset-0 bg-[#0a0f0c]/60 backdrop-blur-[6px]"
           ></div>
           <div className="ml-auto relative w-full max-w-[560px] bg-[#fbfcfa] border-l border-[#dde3dd] overflow-auto">
-            <div className="sticky top-0 bg-[#fbfcfa]/90 backdrop-blur border-b border-[#dde3dd] px-8 h-[64px] flex items-center justify-between">
+            <div className="sticky top-0 bg-[#fbfcfa]/90 backdrop-blur border-b border-[#dde3dd] px-5 sm:px-8 h-[64px] flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
                 <div className="w-[32px] h-[32px] rounded-[10px] bg-[#101512] text-white grid place-items-center font-mono text-[12px]">
                   {active.n}
                 </div>
-                <div className="font-[700] tracking-[-0.02em]">
+                <div className="font-[700] tracking-[-0.02em] truncate text-[14px] sm:text-[15px] min-w-0">
                   {active.name} — {active.tagline}
                 </div>
               </div>
@@ -222,7 +222,7 @@ export default function Work() {
                 ✕
               </button>
             </div>
-            <div className="p-8">
+            <div className="p-5 sm:p-8">
               <div className="font-mono text-[11px] tracking-[0.12em] uppercase text-[#7a877e]">
                 Build notes
               </div>

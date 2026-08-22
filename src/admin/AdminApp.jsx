@@ -281,12 +281,12 @@ function AdminPanel() {
             {projects.map((p, i) => (
               <div
                 key={p.id + i}
-                className="flex items-center gap-4 rounded-[16px] border border-[#dde3dd] bg-white px-5 py-4"
+                className="min-w-0 flex flex-wrap items-center gap-x-4 gap-y-3 rounded-[16px] border border-[#dde3dd] bg-white px-4 sm:px-5 py-4"
               >
                 <div className="w-[36px] h-[36px] rounded-[10px] bg-[#f3f5f3] border border-[#e3e8e3] grid place-items-center font-mono text-[12px] shrink-0">
                   {String(i + 1).padStart(2, '0')}
                 </div>
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 basis-[150px]">
                   <div className="font-[700] text-[15px] truncate">{p.name}</div>
                   <div className="font-mono text-[11px] uppercase tracking-[0.06em] text-[#7a877e] truncate">
                     {p.tagline} • {p.type}
@@ -295,7 +295,7 @@ function AdminPanel() {
                 {p.image ? (
                   <img src={p.image} alt="" className="w-[44px] h-[32px] object-cover rounded-[6px] border border-[#e3e8e3]" />
                 ) : null}
-                <div className="flex items-center gap-1.5 shrink-0">
+                <div className="flex items-center gap-1.5 ml-auto">
                   <IconBtn label="Move up" disabled={i === 0} onClick={() => move(i, -1)}>↑</IconBtn>
                   <IconBtn label="Move down" disabled={i === projects.length - 1} onClick={() => move(i, 1)}>↓</IconBtn>
                   <IconBtn label="Edit" onClick={() => setEditing({ project: p, index: i })}>✎</IconBtn>
@@ -458,7 +458,7 @@ function ProjectForm({ initial, originalIndex, onSave, onCancel, saving }) {
         <div className="font-mono text-[10px] tracking-[0.12em] uppercase text-[#8a9690] mb-1.5">Metrics</div>
         <div className="grid gap-2">
           {p.metrics.map((m, i) => (
-            <div key={i} className="flex gap-2">
+            <div key={i} className="grid grid-cols-[1fr_1fr_38px] gap-2">
               <input
                 className={inputCls}
                 placeholder="Label (e.g. query latency)"
@@ -481,7 +481,7 @@ function ProjectForm({ initial, originalIndex, onSave, onCancel, saving }) {
               />
               <button
                 onClick={() => setP({ ...p, metrics: p.metrics.filter((_, j) => j !== i) })}
-                className="w-[38px] shrink-0 rounded-[10px] border border-[#dde3dd] hover:bg-[#101512] hover:text-white transition"
+                className="rounded-[10px] border border-[#dde3dd] hover:bg-[#101512] hover:text-white transition"
                 aria-label="Remove metric"
               >
                 ✕
