@@ -208,12 +208,15 @@ export default function Work() {
           ></div>
           <div className="ml-auto relative w-full max-w-[560px] bg-[#fbfcfa] border-l border-[#dde3dd] overflow-auto">
             <div className="sticky top-0 bg-[#fbfcfa]/90 backdrop-blur border-b border-[#dde3dd] px-5 sm:px-8 h-[64px] flex items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <div className="w-[32px] h-[32px] rounded-[10px] bg-[#101512] text-white grid place-items-center font-mono text-[12px]">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-[32px] h-[32px] rounded-[10px] bg-[#101512] text-white grid place-items-center font-mono text-[12px] shrink-0">
                   {active.n}
                 </div>
                 <div className="font-[700] tracking-[-0.02em] truncate text-[14px] sm:text-[15px] min-w-0">
-                  {active.name} — {active.tagline}
+                  <span className="sm:hidden">{active.name}</span>
+                  <span className="hidden sm:inline">
+                    {active.name} — {active.tagline}
+                  </span>
                 </div>
               </div>
               <button
@@ -239,16 +242,18 @@ export default function Work() {
                   </div>
                   <p className="text-[14px] leading-[1.7] text-[#2e3831]">{active.build}</p>
                 </div>
-                <div>
-                  <div className="font-[700] text-[13px] tracking-[-0.01em] mb-3">Architecture</div>
-                  <div className="rounded-[16px] border border-[#dde3dd] bg-white p-4 font-mono text-[11px] leading-[1.8] text-[#4a5750]">
-                    <div>— Request → Gateway → Router</div>
-                    <div>— Router.select(cachedEvals, cost, latency)</div>
-                    <div>— Fallback chain with circuit breaker</div>
-                    <div>— Async log → Qdrant / Postgres</div>
-                    <div>— Replay debugger for prompt + context</div>
+                {active.arch?.length > 0 && (
+                  <div>
+                    <div className="font-[700] text-[13px] tracking-[-0.01em] mb-3">Architecture</div>
+                    <div className="rounded-[16px] border border-[#dde3dd] bg-white p-4 font-mono text-[10.5px] sm:text-[11px] leading-[1.7] sm:leading-[1.8] text-[#4a5750]">
+                      {active.arch.map((line) => (
+                        <div key={line} className="break-words">
+                          {line}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
                 <div className="flex flex-wrap gap-2">
                   {active.stack.map((s) => (
                     <span
