@@ -45,11 +45,14 @@ export default function Hero() {
           {/* left */}
           <Reveal className="lg:col-span-7 min-w-0">
             <div className="pt-[56px] lg:pt-[84px] pb-[48px] lg:pb-[88px] lg:pr-[48px] lg:border-r border-[#dde3dd]">
-              <div className="inline-flex flex-wrap items-center gap-2.5 pl-1 pr-3 py-1 rounded-full bg-white border border-[#dde3dd] shadow-card max-w-full">
+              <div className="inline-flex items-center gap-2.5 pl-1 pr-3 py-1 rounded-full bg-white border border-[#dde3dd] shadow-card max-w-full">
                 <span className="w-[24px] h-[24px] rounded-full bg-[#101512] text-white grid place-items-center font-mono text-[10px] shrink-0">
                   ↗
                 </span>
-                <span className="font-mono text-[10.5px] sm:text-[11px] tracking-[0.06em] uppercase text-[#3b4640]">
+                <span className="font-mono text-[9.5px] sm:hidden tracking-[0.05em] uppercase text-[#3b4640] whitespace-nowrap">
+                  CS Student → Full-Stack & AI Builder
+                </span>
+                <span className="hidden sm:inline font-mono text-[11px] tracking-[0.06em] uppercase text-[#3b4640] whitespace-nowrap">
                   Computer Science student → Full-stack & AI builder
                 </span>
               </div>
