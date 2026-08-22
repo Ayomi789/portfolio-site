@@ -1,0 +1,146 @@
+[
+  {
+    "id": "nova",
+    "name": "NOVA",
+    "tagline": "AI Model Orchestration",
+    "type": "AI SYSTEMS / INFRA",
+    "desc": "Unified inference layer that orchestrates LLMs, vision models and custom adapters. Request routing, intelligent fallbacks, cost-aware model selection and full observability. Built for production, not demos.",
+    "problem": "Teams juggling 5+ model providers with brittle prompt logic and no fallback. One failure = product failure.",
+    "build": "FastAPI gateway with Redis queues, Postgres telemetry, token-weighted routing algorithm. Every request logged, scored, and replayable.",
+    "stack": [
+      "Python",
+      "FastAPI",
+      "Redis",
+      "Postgres",
+      "Docker",
+      "Langfuse"
+    ],
+    "metrics": [
+      {
+        "k": "p95 routing",
+        "v": "< 48ms"
+      },
+      {
+        "k": "fallback success",
+        "v": "99.93%"
+      },
+      {
+        "k": "models unified",
+        "v": "12+"
+      }
+    ],
+    "status": "Architecture Live",
+    "link": "https://ayomi789.github.io/Nova/",
+    "repo": "https://github.com/Ayomi789/Nova",
+    "color": "#0b8f68",
+    "accent": "bg-[#0b8f68]",
+    "image": ""
+  },
+  {
+    "id": "atlas",
+    "name": "Atlas",
+    "tagline": "AI Knowledge Hub",
+    "type": "RAG / KNOWLEDGE GRAPH",
+    "desc": "RAG-native second brain for teams. Ingests docs, transcriptions, links and APIs into a queryable graph. Not another chatbot wrapper \u2014 actual source-grounded recall with citations.",
+    "problem": "Knowledge trapped in Notion, Drive, Slack. Search returns links, not answers.",
+    "build": "React front, Qdrant vector store, hybrid search (BM25 + vectors), graph traversal for context expansion. Every answer includes path to source.",
+    "stack": [
+      "React",
+      "Qdrant",
+      "LangChain",
+      "Prisma",
+      "Clerk"
+    ],
+    "metrics": [
+      {
+        "k": "ingest formats",
+        "v": "8 types"
+      },
+      {
+        "k": "citation precision",
+        "v": "94.2%"
+      },
+      {
+        "k": "query latency",
+        "v": "620ms"
+      }
+    ],
+    "status": "Architecture Live",
+    "link": "https://ayomi789.github.io/atlas-frontend/",
+    "repo": "https://github.com/Ayomi789/atlas-frontend",
+    "color": "#0b8f68",
+    "accent": "bg-[#0b8f68]",
+    "image": ""
+  },
+  {
+    "id": "crm",
+    "name": "CRM Ticketing System",
+    "tagline": "Full-Stack Business Software",
+    "type": "BUSINESS OS / SAAS",
+    "desc": "End-to-end ticketing and CRM for a real service business. Role-based access, SLA automation, revenue tracking, analytics. Built under real constraints with real users complaining.",
+    "problem": "Founders using spreadsheets and WhatsApp to manage \u00a310k/mo revenue pipeline. Chaos.",
+    "build": "Multi-tenant Postgres, Row Level Security, event-driven automation, real-time dashboards. Deployed and handling 400+ tickets/month.",
+    "stack": [
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "Supabase",
+      "Tailwind"
+    ],
+    "metrics": [
+      {
+        "k": "tickets handled",
+        "v": "400+/mo"
+      },
+      {
+        "k": "resolution time",
+        "v": "-62%"
+      },
+      {
+        "k": "active users",
+        "v": "11"
+      }
+    ],
+    "status": "In Beta Testing",
+    "link": "https://ayomi789.github.io/ContextDesk/",
+    "repo": "https://github.com/Ayomi789/ContextDesk",
+    "color": "#b5aa92",
+    "accent": "bg-[#b5aa92]",
+    "image": ""
+  },
+  {
+    "id": "cali",
+    "name": "Calisthenics App",
+    "tagline": "Consumer Product",
+    "type": "MOBILE / CONSUMER",
+    "desc": "Progressive calisthenics training focused on skill acquisition, not random workouts. Program logic that adapts based on prerequisite strength, form cues, and actual progression.",
+    "problem": "Existing apps: generic push-up counters or influencer PDFs. No system to get to muscle-up.",
+    "build": "Expo + Supabase realtime. Custom progression engine that unlocks skills only when strength standards verified. Video cues, tempo tracking.",
+    "stack": [
+      "React Native",
+      "Expo",
+      "Supabase",
+      "Reanimated 3"
+    ],
+    "metrics": [
+      {
+        "k": "exercise library",
+        "v": "180+"
+      },
+      {
+        "k": "workouts logged",
+        "v": "1.2k beta"
+      },
+      {
+        "k": "retention w3",
+        "v": "61%"
+      }
+    ],
+    "status": "In Development",
+    "link": "https://ayomi789.github.io/Calisthenics-App/",
+    "repo": "https://github.com/Ayomi789/Calisthenics-App",
+    "color": "#dbe2dc",
+    "accent": "bg-[#090908]",
+    "image": ""
+  }
+]

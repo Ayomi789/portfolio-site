@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Geist", "sans-serif";
+  --font-mono: "Geist Mono", "monospace";
+  --font-serif: "Instrument Serif", "Newsreader", "serif";
+
+  --color-paper: #fbfcfa;
+  --color-ink: #101512;
+  --color-line: #dde3dd;
+  --color-moss: #0f2217;
+
+  --shadow-soft: 0 20px 60px rgba(15, 34, 23, 0.08);
+  --shadow-card: 0 1px 0 rgba(0, 0, 0, 0.04), 0 8px 24px rgba(15, 34, 23, 0.06);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  font-variant-ligatures: common-ligatures;
+}
+
+body {
+  background: #fbfcfa;
+  color: #101512;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #101512;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9d1c9;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  header .w-\[32px\] {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
