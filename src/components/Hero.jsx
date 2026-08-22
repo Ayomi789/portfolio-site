@@ -83,10 +83,10 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-3">
+              <div className="mt-8 sm:mt-10 grid grid-cols-2 gap-3">
                 <a
                   href="#work"
-                  className="h-[44px] px-6 rounded-full bg-[#101512] text-white inline-flex items-center gap-2 font-[600] text-[14px] tracking-[-0.01em] hover:bg-[#0f2217] transition shadow-soft"
+                  className="h-[46px] sm:h-[44px] rounded-full bg-[#101512] text-white inline-flex items-center justify-center gap-2 font-[600] text-[13.5px] sm:text-[14px] tracking-[-0.01em] hover:bg-[#0f2217] transition shadow-soft"
                 >
                   View systems →
                 </a>
@@ -94,7 +94,7 @@ export default function Hero() {
                   href="/cv/AbdullateefSalako_CV.pdf"
                   target="_blank"
                   rel="noreferrer"
-                  className="h-[44px] px-6 rounded-full bg-white border border-[#dde3dd] inline-flex items-center gap-2 font-[600] text-[14px] tracking-[-0.01em] hover:border-[#101512] transition"
+                  className="h-[46px] sm:h-[44px] rounded-full bg-white border border-[#dde3dd] inline-flex items-center justify-center gap-2 font-[600] text-[13.5px] sm:text-[14px] tracking-[-0.01em] hover:border-[#101512] transition"
                 >
                   Contact / CV <span className="font-mono text-[10px] opacity-60">↗</span>
                 </a>
@@ -104,7 +104,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="mt-14 pt-8 border-t border-[#dde3dd] grid grid-cols-3 gap-6 max-w-[520px]">
+              <div className="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-[#dde3dd] grid grid-cols-3 gap-4 sm:gap-6 max-w-[520px]">
                 {HERO_STATS.map((it) => (
                   <div key={it.k}>
                     <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-[#8a9690] mb-2">
@@ -121,7 +121,7 @@ export default function Hero() {
 
           {/* right - engineered card */}
           <Reveal className="lg:col-span-5 min-w-0" delay={120}>
-            <div className="pt-[24px] lg:pt-[84px] pb-[48px] lg:pl-[40px] min-w-0">
+            <div className="pt-0 lg:pt-[84px] pb-[48px] lg:pl-[40px] min-w-0">
               <div className="relative rounded-[24px] border border-[#dde3dd] bg-white shadow-soft overflow-hidden">
                 <div className="h-[44px] border-b border-[#dde3dd] px-5 flex items-center justify-between bg-[#f6f8f6]">
                   <div className="flex items-center gap-2.5">

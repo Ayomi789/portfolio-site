@@ -62,7 +62,7 @@ export default function Work() {
   const [active, setActive] = useState(null)
 
   return (
-    <section id="work" className="max-w-[1360px] mx-auto px-6 lg:px-10 py-[72px] lg:py-[96px]">
+    <section id="work" className="max-w-[1360px] mx-auto px-6 lg:px-10 py-[56px] lg:py-[96px]">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <Reveal>
           <div>
@@ -90,15 +90,15 @@ export default function Work() {
               <article className="group relative rounded-[28px] border border-[#dde3dd] bg-white overflow-hidden hover:shadow-soft transition-all duration-500">
                 <div className="grid lg:grid-cols-12">
                   {/* info */}
-                  <div className="lg:col-span-7 p-[24px] lg:p-[32px] flex flex-col">
+                  <div className="lg:col-span-7 p-5 sm:p-[24px] lg:p-[32px] flex flex-col">
                     <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
-                      <div className="flex gap-4 min-w-0">
-                        <div className="w-[44px] h-[44px] rounded-[12px] bg-[#f3f5f3] border border-[#e3e8e3] grid place-items-center font-mono text-[12px] tracking-[0.04em]">
+                      <div className="flex gap-3 sm:gap-4 min-w-0">
+                        <div className="w-[38px] h-[38px] sm:w-[44px] sm:h-[44px] rounded-[11px] sm:rounded-[12px] bg-[#f3f5f3] border border-[#e3e8e3] grid place-items-center font-mono text-[12px] tracking-[0.04em] shrink-0">
                           {p.n}
                         </div>
                         <div>
                           <div className="flex flex-wrap items-center gap-2.5">
-                            <h3 className="font-[800] tracking-[-0.03em] text-[22px] leading-none">
+                            <h3 className="font-[800] tracking-[-0.03em] text-[19px] sm:text-[22px] leading-none">
                               {p.name}
                             </h3>
                             <span
@@ -145,25 +145,27 @@ export default function Work() {
                       </div>
                     </div>
 
-                    <p className="mt-6 text-[15.5px] leading-[1.6] tracking-[-0.01em] text-[#2a342d] max-w-[56ch]">
+                    <p className="mt-5 sm:mt-6 text-[14.5px] sm:text-[15.5px] leading-[1.6] tracking-[-0.01em] text-[#2a342d] max-w-[56ch]">
                       {p.desc}
                     </p>
 
-                    <div className="mt-7 grid sm:grid-cols-3 gap-4">
+                    <div className="mt-6 sm:mt-7 grid grid-cols-3 gap-2 sm:gap-4">
                       {p.metrics.map((m) => (
                         <div
                           key={m.k}
-                          className="rounded-[14px] border border-[#e6eae6] bg-[#fbfcfa] px-3.5 py-3"
+                          className="rounded-[12px] sm:rounded-[14px] border border-[#e6eae6] bg-[#fbfcfa] px-2.5 py-2.5 sm:px-3.5 sm:py-3"
                         >
-                          <div className="font-mono text-[10px] tracking-[0.1em] uppercase text-[#8a9690]">
+                          <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.08em] sm:tracking-[0.1em] uppercase text-[#8a9690]">
                             {m.k}
                           </div>
-                          <div className="mt-1 font-[700] tracking-[-0.02em] text-[14px]">{m.v}</div>
+                          <div className="mt-1 font-[700] tracking-[-0.02em] text-[13px] sm:text-[14px]">
+                            {m.v}
+                          </div>
                         </div>
                       ))}
                     </div>
 
-                    <div className="mt-auto pt-8 flex flex-wrap items-center gap-2">
+                    <div className="mt-auto pt-6 sm:pt-8 flex flex-wrap items-center gap-2">
                       <div className="font-mono text-[10px] tracking-[0.12em] uppercase text-[#8a9690] mr-1">
                         Stack:
                       </div>
@@ -185,7 +187,7 @@ export default function Work() {
                   </div>
 
                   {/* visual */}
-                  <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-[#dde3dd] bg-[#f6f8f6] p-[18px] lg:p-[20px]">
+                  <div className="lg:col-span-5 border-t lg:border-t-0 lg:border-l border-[#dde3dd] bg-[#f6f8f6] p-3 sm:p-[18px] lg:p-[20px]">
                     <div className="h-full rounded-[18px] bg-white border border-[#dde3dd] overflow-hidden flex flex-col">
                       <ProjectVisual project={p} />
                     </div>

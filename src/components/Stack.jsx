@@ -7,8 +7,8 @@ const CHIPS = ['TypeScript-first', 'Tested', 'Documented']
 
 export default function Stack() {
   return (
-    <section id="stack" className="max-w-[1360px] mx-auto px-6 lg:px-10 py-[72px] lg:py-[96px]">
-      <div className="grid lg:grid-cols-12 gap-12">
+    <section id="stack" className="max-w-[1360px] mx-auto px-6 lg:px-10 py-[56px] lg:py-[96px]">
+      <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
         <Reveal className="lg:col-span-4">
           <div>
             <div className="font-mono text-[11px] tracking-[0.16em] uppercase text-[#0b8f68]">
@@ -19,7 +19,7 @@ export default function Stack() {
               <br />
               Systems depth.
             </h2>
-            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#dde3dd] bg-white px-4 py-2 font-mono text-[11px]">
+            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#dde3dd] bg-white px-3.5 sm:px-4 py-2 font-mono text-[10px] sm:text-[11px]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0b8f68]"></span>Currently: Third year CS
               — Graduating 2028
             </div>
@@ -29,7 +29,7 @@ export default function Stack() {
           <div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-[#dde3dd] border border-[#dde3dd] rounded-[20px] overflow-hidden">
               {STACK_GROUPS.map((g) => (
-                <div key={g.h} className="bg-[#fbfcfa] p-6">
+                <div key={g.h} className="bg-[#fbfcfa] p-5 sm:p-6">
                   <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-[#8a9690]">
                     {g.h}
                   </div>

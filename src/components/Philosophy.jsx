@@ -16,7 +16,7 @@ export default function Philosophy() {
           backgroundSize: '48px 48px',
         }}
       ></div>
-      <div className="relative max-w-[1360px] mx-auto px-6 lg:px-10 py-[72px] lg:py-[88px]">
+      <div className="relative max-w-[1360px] mx-auto px-6 lg:px-10 py-[56px] lg:py-[88px]">
         <div className="grid lg:grid-cols-12 gap-10">
           <Reveal className="lg:col-span-5">
             <div>
@@ -37,7 +37,7 @@ export default function Philosophy() {
           <Reveal className="lg:col-span-7" delay={120}>
             <div className="grid sm:grid-cols-2 gap-[1px] bg-[#1e3126] border border-[#1e3126] rounded-[20px] overflow-hidden">
               {PRINCIPLES.map((p) => (
-                <div key={p.t} className="bg-[#111e16] p-7 lg:p-8 hover:bg-[#16281d] transition">
+                <div key={p.t} className="bg-[#111e16] p-5 sm:p-7 lg:p-8 hover:bg-[#16281d] transition">
                   <div className="font-mono text-[10px] tracking-[0.12em] uppercase text-[#6ea68e] mb-4">
                     Principle
                   </div>

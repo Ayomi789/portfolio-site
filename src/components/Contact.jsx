@@ -22,7 +22,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="border-t border-[#dde3dd] bg-[#f6f8f6]">
-      <div className="max-w-[1360px] mx-auto px-6 lg:px-10 py-[64px] lg:py-[80px] grid lg:grid-cols-12 gap-10 items-start">
+      <div className="max-w-[1360px] mx-auto px-6 lg:px-10 py-[56px] lg:py-[80px] grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
         <Reveal className="lg:col-span-6">
           <div>
             <div className="font-mono text-[11px] tracking-[0.16em] uppercase text-[#0b8f68]">
@@ -38,10 +38,10 @@ export default function Contact() {
               software that needs to work in production — reach out.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3">
               <button
                 onClick={copyEmail}
-                className="h-[44px] px-5 rounded-full bg-[#101512] text-white inline-flex items-center gap-2 font-[600] text-[13px] hover:bg-[#0f2217] transition"
+                className="h-[46px] sm:h-[44px] px-5 rounded-full bg-[#101512] text-white inline-flex items-center justify-center gap-2 font-[600] text-[13px] hover:bg-[#0f2217] transition"
               >
                 {copied ? 'Copied ✓' : EMAIL} <span className="opacity-60">⎘</span>
               </button>
@@ -49,7 +49,7 @@ export default function Contact() {
                 href="https://github.com/Ayomi789"
                 target="_blank"
                 rel="noreferrer"
-                className="h-[44px] px-5 rounded-full bg-white border border-[#dde3dd] inline-flex items-center gap-2 font-[600] text-[13px] hover:border-[#101512] transition"
+                className="h-[46px] sm:h-[44px] px-5 rounded-full bg-white border border-[#dde3dd] inline-flex items-center justify-center gap-2 font-[600] text-[13px] hover:border-[#101512] transition"
               >
                 GitHub ↗
               </a>
@@ -57,7 +57,7 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/abdullateef-salako-18764b2a9"
                 target="_blank"
                 rel="noreferrer"
-                className="h-[44px] px-5 rounded-full bg-white border border-[#dde3dd] inline-flex items-center gap-2 font-[600] text-[13px] hover:border-[#101512] transition"
+                className="h-[46px] sm:h-[44px] px-5 rounded-full bg-white border border-[#dde3dd] inline-flex items-center justify-center gap-2 font-[600] text-[13px] hover:border-[#101512] transition"
               >
                 LinkedIn ↗
               </a>
@@ -78,7 +78,7 @@ export default function Contact() {
               {INTRO_ROWS.map((r) => (
                 <div
                   key={r.k}
-                  className="grid grid-cols-[110px_1fr] gap-4 text-[13.5px] leading-[1.5] py-3 border-b border-[#eef1ee] last:border-0"
+                  className="grid grid-cols-[92px_1fr] sm:grid-cols-[110px_1fr] gap-3 sm:gap-4 text-[13px] sm:text-[13.5px] leading-[1.5] py-3 border-b border-[#eef1ee] last:border-0"
                 >
                   <div className="font-mono text-[11px] tracking-[0.08em] uppercase text-[#8a9690] pt-0.5">
                     {r.k}
