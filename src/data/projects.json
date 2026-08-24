@@ -30,17 +30,17 @@
       }
     ],
     "status": "Architecture Live",
-    "link": "https://ayomi789.github.io/Nova/",
+    "link": "https://nova-8192.onrender.com/",
     "repo": "https://github.com/Ayomi789/Nova",
     "color": "#0b8f68",
     "accent": "bg-[#0b8f68]",
     "image": "",
     "arch": [
-      "\u2014 Request \u2192 Gateway \u2192 Router",
-      "\u2014 Router.select(cachedEvals, cost, latency)",
-      "\u2014 Fallback chain with circuit breaker",
-      "\u2014 Async log \u2192 Qdrant / Postgres",
-      "\u2014 Replay debugger for prompt + context"
+      "— Request → Gateway → Router",
+      "— Router.select(cachedEvals, cost, latency)",
+      "— Fallback chain with circuit breaker",
+      "— Async log → Qdrant / Postgres",
+      "— Replay debugger for prompt + context"
     ]
   },
   {
@@ -48,7 +48,7 @@
     "name": "Atlas",
     "tagline": "AI Knowledge Hub",
     "type": "RAG / KNOWLEDGE GRAPH",
-    "desc": "RAG-native second brain for teams. Ingests docs, transcriptions, links and APIs into a queryable graph. Not another chatbot wrapper \u2014 actual source-grounded recall with citations.",
+    "desc": "RAG-native second brain for teams. Ingests docs, transcriptions, links and APIs into a queryable graph. Not another chatbot wrapper — actual source-grounded recall with citations.",
     "problem": "Knowledge trapped in Notion, Drive, Slack. Search returns links, not answers.",
     "build": "React front, Qdrant vector store, hybrid search (BM25 + vectors), graph traversal for context expansion. Every answer includes path to source.",
     "stack": [
@@ -79,11 +79,11 @@
     "accent": "bg-[#0b8f68]",
     "image": "",
     "arch": [
-      "\u2014 Ingest: docs / links / transcripts / APIs",
-      "\u2014 Chunk \u2192 embed \u2192 Qdrant vectors",
-      "\u2014 Hybrid search: BM25 + vector recall",
-      "\u2014 Graph traversal expands context",
-      "\u2014 Answers cited back to source"
+      "— Ingest: docs / links / transcripts / APIs",
+      "— Chunk → embed → Qdrant vectors",
+      "— Hybrid search: BM25 + vector recall",
+      "— Graph traversal expands context",
+      "— Answers cited back to source"
     ]
   },
   {
@@ -92,7 +92,7 @@
     "tagline": "Full-Stack Business Software",
     "type": "BUSINESS OS / SAAS",
     "desc": "End-to-end ticketing and CRM for a real service business. Role-based access, SLA automation, revenue tracking, analytics. Built under real constraints with real users complaining.",
-    "problem": "Founders using spreadsheets and WhatsApp to manage \u00a310k/mo revenue pipeline. Chaos.",
+    "problem": "Founders using spreadsheets and WhatsApp to manage £10k/mo revenue pipeline. Chaos.",
     "build": "Multi-tenant Postgres, Row Level Security, event-driven automation, real-time dashboards. Deployed and handling 400+ tickets/month.",
     "stack": [
       "React",
@@ -122,11 +122,11 @@
     "accent": "bg-[#b5aa92]",
     "image": "",
     "arch": [
-      "\u2014 Ticket intake \u2192 SLA clock starts",
-      "\u2014 Role-based views (RLS in Postgres)",
-      "\u2014 Event-driven automation triggers",
-      "\u2014 Real-time dashboards + revenue",
-      "\u2014 400+ tickets / month in production"
+      "— Ticket intake → SLA clock starts",
+      "— Role-based views (RLS in Postgres)",
+      "— Event-driven automation triggers",
+      "— Real-time dashboards + revenue",
+      "— 400+ tickets / month in production"
     ]
   },
   {
@@ -164,11 +164,11 @@
     "accent": "bg-[#090908]",
     "image": "",
     "arch": [
-      "\u2014 Skill tree with strength prereqs",
-      "\u2014 Progression engine gates unlocks",
-      "\u2014 Session logging via Supabase RT",
-      "\u2014 Video cues + tempo tracking",
-      "\u2014 Adaptive next-session planning"
+      "— Skill tree with strength prereqs",
+      "— Progression engine gates unlocks",
+      "— Session logging via Supabase RT",
+      "— Video cues + tempo tracking",
+      "— Adaptive next-session planning"
     ]
   }
 ]
