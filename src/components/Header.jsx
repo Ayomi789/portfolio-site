@@ -89,6 +89,14 @@ export default function Header() {
               {i.l}
             </a>
           ))}
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="mt-2 inline-flex items-center justify-center gap-2 h-[40px] px-4 rounded-full bg-[#101512] text-white text-[13px] font-semibold tracking-[-0.01em]"
+          >
+            <span className="w-[6px] h-[6px] rounded-full bg-[#2fe090] animate-pulse"></span>
+            Available for work
+          </a>
         </div>
       )}
     </header>

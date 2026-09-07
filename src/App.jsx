@@ -7,7 +7,8 @@ import Contact from './components/Contact'
 import AdminApp from './admin/AdminApp'
 
 export default function App() {
-  if (window.location.pathname.replace(/\/+$/, '') === '/admin') {
+  const path = window.location.pathname.replace(/\/+$/, '').toLowerCase()
+  if (path === '/admin' || path.startsWith('/admin/')) {
     return <AdminApp />
   }
 

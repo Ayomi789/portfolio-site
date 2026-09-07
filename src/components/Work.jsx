@@ -1,6 +1,6 @@
 
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PROJECTS } from '../data/projects'
 import NovaVisual from './visuals/NovaVisual'
 import AtlasVisual from './visuals/AtlasVisual'
@@ -60,6 +60,24 @@ function ProjectVisual({ project }) {
 
 export default function Work() {
   const [active, setActive] = useState(null)
+  const total = PROJECTS.length
+  const totalWord =
+    ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'][total] ??
+    total
+
+  useEffect(() => {
+    if (!active) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') setActive(null)
+    }
+    document.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [active])
 
   return (
     <section id="work" className="max-w-[1360px] mx-auto px-6 lg:px-10 py-[56px] lg:py-[96px]">
@@ -71,7 +89,7 @@ export default function Work() {
               SYSTEMS
             </div>
             <h2 className="mt-4 font-serif text-[clamp(32px,4.5vw,56px)] leading-[0.95] tracking-[-0.04em] max-w-[16ch]">
-              Four systems. Real constraints. Real users.
+              {total === 1 ? 'One system.' : `${totalWord} systems.`} Real constraints. Real users.
             </h2>
           </div>
         </Reveal>

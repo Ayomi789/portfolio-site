@@ -93,7 +93,7 @@ export default function Contact() {
                 <div className="mt-1">
                   Lagos, Nigeria
                   <br />
-                  Open to remote / Lagos Nigeria
+                  Open to remote
                 </div>
               </div>
               <div className="rounded-[12px] bg-[#f3f5f3] border border-[#dde3dd] p-4">

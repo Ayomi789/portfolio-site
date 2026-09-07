@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import rawProjects from '../data/projects.json'
 
 const EMPTY = {
@@ -12,6 +12,8 @@ const EMPTY = {
   stack: [],
   metrics: [],
   status: 'In Development',
+  inProduction: false,
+  arch: [],
   color: '#0b8f68',
   accent: 'bg-[#0b8f68]',
   image: '',
@@ -27,6 +29,10 @@ const ACCENTS = [
   ['Teal', 'bg-[#0f766e]'],
   ['Slate', 'bg-[#475569]'],
 ]
+
+// Max image size per upload — larger files are rejected before upload
+// so a phone photo can't bloat the repo on every save.
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024
 
 // In production there is no local upload endpoint — files picked for upload are
 // staged here and committed to the repo together with the next save.
@@ -83,7 +89,11 @@ function LoginScreen({ onAuthed }) {
         headers: { 'X-Admin-Password': pw },
       })
       if (!res.ok) {
-        setError('Wrong password — try again')
+        setError(
+          res.status === 429
+            ? 'Too many attempts — try again in a few minutes'
+            : 'Wrong password — try again'
+        )
         setChecking(false)
         return
       }
@@ -211,6 +221,8 @@ function AdminPanel() {
     const clean = {
       ...project,
       id: project.id || slugify(project.name || '') || `project-${Date.now()}`,
+      inProduction: !!project.inProduction,
+      arch: (project.arch ?? []).map((l) => l.trim()).filter(Boolean),
       stack: project.stack.filter(Boolean),
       metrics: project.metrics.filter((m) => m.k && m.v),
     }
@@ -341,6 +353,80 @@ function Field({ label, children }) {
   )
 }
 
+function CustomSelect({ value, onChange, options, label }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (!open) return
+    const onDown = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false)
+    }
+    const onKey = (e) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', onDown)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  const current = options.find((o) => o.value === value) ?? { value, label: value }
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        aria-label={label}
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        className={inputCls + ' flex items-center justify-between gap-2 text-left'}
+      >
+        <span className="flex items-center gap-2 truncate">
+          {current.swatch && (
+            <span className={`w-[12px] h-[12px] rounded-full shrink-0 ${current.swatch}`} />
+          )}
+          <span className="truncate">{current.label}</span>
+        </span>
+        <span
+          className={`shrink-0 text-[11px] text-[#8a9690] transition-transform ${open ? 'rotate-180' : ''}`}
+        >
+          ▾
+        </span>
+      </button>
+      {open && (
+        <div className="absolute z-20 mt-1.5 w-full rounded-[12px] border border-[#dde3dd] bg-white shadow-soft overflow-hidden py-1 max-h-[240px] overflow-auto">
+          {options.map((o) => (
+            <button
+              key={o.value}
+              type="button"
+              onClick={() => {
+                onChange(o.value)
+                setOpen(false)
+              }}
+              className={`w-full text-left px-3 py-2 text-[14px] transition hover:bg-[#f3f5f3] ${
+                o.value === value ? 'font-[700]' : ''
+              }`}
+            >
+              <span className="flex items-center justify-between gap-2">
+                <span className="flex items-center gap-2 truncate">
+                  {o.swatch && (
+                    <span className={`w-[12px] h-[12px] rounded-full shrink-0 ${o.swatch}`} />
+                  )}
+                  <span className="truncate">{o.label}</span>
+                </span>
+                {o.value === value && <span className="text-[#0b8f68] shrink-0">✓</span>}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 function readFileAsDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
@@ -359,6 +445,13 @@ function ProjectForm({ initial, originalIndex, onSave, onCancel, saving }) {
   async function handleFile(e) {
     const file = e.target.files?.[0]
     if (!file) return
+    if (file.size > MAX_UPLOAD_BYTES) {
+      alert(
+        `That image is ${(file.size / 1048576).toFixed(1)}MB — max 5MB. Compress it and try again.`
+      )
+      e.target.value = ''
+      return
+    }
     setUploading(true)
     try {
       const dataUrl = await readFileAsDataUrl(file)
@@ -409,11 +502,12 @@ function ProjectForm({ initial, originalIndex, onSave, onCancel, saving }) {
           <input className={inputCls} value={p.type} onChange={set('type')} placeholder="AI SYSTEMS / INFRA" />
         </Field>
         <Field label="Status">
-          <select className={inputCls} value={p.status} onChange={set('status')}>
-            {STATUSES.map((s) => (
-              <option key={s}>{s}</option>
-            ))}
-          </select>
+          <CustomSelect
+            label="Status"
+            value={p.status}
+            onChange={(v) => setP({ ...p, status: v })}
+            options={STATUSES.map((s) => ({ value: s, label: s }))}
+          />
         </Field>
         <Field label="Live demo / case study URL">
           <input className={inputCls} value={p.link} onChange={set('link')} placeholder="https://…" />
@@ -421,6 +515,19 @@ function ProjectForm({ initial, originalIndex, onSave, onCancel, saving }) {
         <Field label="GitHub repo URL">
           <input className={inputCls} value={p.repo} onChange={set('repo')} placeholder="https://github.com/…" />
         </Field>
+      </div>
+
+      <div className="mt-4 flex items-center gap-3 rounded-[10px] border border-[#dde3dd] bg-[#fbfcfa] px-3 py-2.5">
+        <input
+          id="inProduction"
+          type="checkbox"
+          checked={!!p.inProduction}
+          onChange={(e) => setP({ ...p, inProduction: e.target.checked })}
+          className="w-[16px] h-[16px] accent-[#0b8f68]"
+        />
+        <label htmlFor="inProduction" className="text-[13px]">
+          In production <span className="text-[#8a9690]">— counts toward “X in production” on the homepage</span>
+        </label>
       </div>
 
       <div className="mt-4 grid gap-4">
@@ -433,6 +540,15 @@ function ProjectForm({ initial, originalIndex, onSave, onCancel, saving }) {
         <Field label="How I built it (build notes)">
           <textarea className={inputCls} rows={2} value={p.build} onChange={set('build')} />
         </Field>
+        <Field label="Architecture (one per line — shown in build notes)">
+          <textarea
+            className={inputCls}
+            rows={4}
+            value={(p.arch ?? []).join('\n')}
+            onChange={(e) => setP({ ...p, arch: e.target.value.split('\n') })}
+            placeholder="— Request → Gateway → Router"
+          />
+        </Field>
       </div>
 
       <div className="mt-4 grid sm:grid-cols-2 gap-4">
@@ -444,13 +560,12 @@ function ProjectForm({ initial, originalIndex, onSave, onCancel, saving }) {
           />
         </Field>
         <Field label="Badge color">
-          <select className={inputCls} value={p.accent} onChange={set('accent')}>
-            {ACCENTS.map(([label, cls]) => (
-              <option key={cls} value={cls}>
-                {label}
-              </option>
-            ))}
-          </select>
+          <CustomSelect
+            label="Badge color"
+            value={p.accent}
+            onChange={(v) => setP({ ...p, accent: v })}
+            options={ACCENTS.map(([label, cls]) => ({ value: cls, label, swatch: cls }))}
+          />
         </Field>
       </div>
 

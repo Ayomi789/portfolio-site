@@ -30,6 +30,7 @@
       }
     ],
     "status": "Architecture Live",
+    "inProduction": false,
     "link": "https://nova-8192.onrender.com/",
     "repo": "https://github.com/Ayomi789/Nova",
     "color": "#0b8f68",
@@ -73,6 +74,7 @@
       }
     ],
     "status": "Architecture Live",
+    "inProduction": false,
     "link": "https://atlas-frontend-blond.vercel.app/",
     "repo": "https://github.com/Ayomi789/atlas-frontend",
     "color": "#0b8f68",
@@ -116,6 +118,7 @@
       }
     ],
     "status": "In Beta Testing",
+    "inProduction": true,
     "link": "https://ayomi789.github.io/ContextDesk/",
     "repo": "https://github.com/Ayomi789/ContextDesk",
     "color": "#b5aa92",
@@ -158,6 +161,7 @@
       }
     ],
     "status": "In Development",
+    "inProduction": true,
     "link": "https://ayomi789.github.io/Calisthenics-App/",
     "repo": "https://github.com/Ayomi789/Calisthenics-App",
     "color": "#dbe2dc",

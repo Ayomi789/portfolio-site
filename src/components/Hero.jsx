@@ -1,6 +1,7 @@
 
 
 import { useEffect, useState } from 'react'
+import { PROJECTS } from '../data/projects'
 import Reveal from './Reveal'
 
 const TYPED = 'orchestrate_models(['
@@ -21,6 +22,8 @@ const STACK_CHIPS = ['TS', 'Python', 'Postgres', 'Qdrant', 'Redis', 'Docker']
 
 export default function Hero() {
   const [typed, setTyped] = useState('')
+  const shipped = PROJECTS.length
+  const inProd = PROJECTS.filter((p) => p.inProduction).length
 
   useEffect(() => {
     let i = 0
@@ -80,7 +83,7 @@ export default function Hero() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.06em] uppercase text-[#6e7a70]">
-                    <span className="w-1 h-1 rounded-full bg-[#0b8f68]"></span> Based in UK • Remote •
+                    <span className="w-1 h-1 rounded-full bg-[#0b8f68]"></span> Based in Lagos • Remote •
                     GMT
                   </div>
                 </div>
@@ -102,8 +105,8 @@ export default function Hero() {
                   Contact / CV <span className="font-mono text-[10px] opacity-60">↗</span>
                 </a>
                 <div className="hidden md:inline-flex ml-2 items-center gap-2 h-[44px] px-4 rounded-full bg-[#eaf3ec] border border-[#d6e2d8] font-mono text-[11px]">
-                  <span className="w-[6px] h-[6px] rounded-full bg-[#0b8f68] animate-pulse"></span> 4
-                  systems shipped • 2 in production
+                  <span className="w-[6px] h-[6px] rounded-full bg-[#0b8f68] animate-pulse"></span>{' '}
+                  {shipped} {shipped === 1 ? 'system' : 'systems'} shipped • {inProd} in production
                 </div>
               </div>
 

@@ -9,7 +9,10 @@
 //   GITHUB_REPO    — e.g. "Ayomi789/portfolio-site" (falls back to this)
 //   GITHUB_BRANCH  — defaults to "main"
 
+import { checkAdminPassword } from '../lib/server-auth.js'
+
 const REPO_DEFAULT = 'Ayomi789/portfolio-site'
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024
 
 function gh(token, path, opts = {}) {
   return fetch(`https://api.github.com${path}`, {
@@ -46,15 +49,15 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' })
 
   try {
-    const password = process.env.ADMIN_PASSWORD
-    const token = process.env.GITHUB_TOKEN
-    if (!password || !token) {
-      return res.status(500).json({
-        error: 'Server not configured: set ADMIN_PASSWORD and GITHUB_TOKEN env vars in Vercel.',
-      })
+    const check = checkAdminPassword(req)
+    if (!check.ok) {
+      return res.status(check.status).json({ error: check.error })
     }
-    if (req.headers['x-admin-password'] !== password) {
-      return res.status(401).json({ error: 'Wrong password' })
+    const token = process.env.GITHUB_TOKEN
+    if (!token) {
+      return res.status(500).json({
+        error: 'Server not configured: set GITHUB_TOKEN env var in Vercel.',
+      })
     }
 
     const repo = process.env.GITHUB_REPO || REPO_DEFAULT
@@ -74,6 +77,9 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: `Invalid upload: ${up.path}` })
       }
       const binary = Buffer.from(up.data.split(',')[1] || '', 'base64')
+      if (binary.length > MAX_UPLOAD_BYTES) {
+        return res.status(400).json({ error: `Image too large (max 5MB): ${up.path}` })
+      }
       await putFile(token, repo, branch, `public${up.path}`, binary, `cms: upload image`)
     }
 
