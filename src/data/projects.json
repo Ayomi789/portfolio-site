@@ -130,30 +130,6 @@
     ]
   },
   {
-    "id": "workout-app",
-    "name": "Workout App",
-    "tagline": "Offline home-training app — all premium, zero ads",
-    "type": "Mobile App ",
-    "desc": " Rebuilt Leap’s Home Workout premium as a free offline clone: 80 exercises, 10 programs, injury-aware plan generator, 28-day engine, per-exercise timers, local progress tracking. No account, no server.",
-    "problem": "Paywalled plans blocked my own training; the original also fakes personalization, ignores pulling muscles, and serves mid-workout ads.",
-    "build": "Expo + React Native, SQLite offline-first; dose-string engine drives one universal timer path; GIF resolver with per-ID mapping across free datasets (verified 75 exact, CC photos + hand-drawn SVG for the rest); EAS preview APK + EAS Updates for laptop-free iteration",
-    "stack": [
-      "React Native",
-      "Expo",
-      "SQLite",
-      "Zustand",
-      "EAS Build",
-      "GitHub Actions"
-    ],
-    "metrics": [],
-    "status": "Architecture Live",
-    "color": "#0b8f68",
-    "accent": "bg-[#0b8f68]",
-    "image": "/uploads/1788817993524-5lelqm.png",
-    "link": "https://expo.dev/artifacts/eas/Tsz87Vfhnmwu2E31nDr-EL9Jp_yFVE6Kpr6qfhRVqGk.apk ",
-    "repo": "https://github.com/Ayomi789/workout-clone/"
-  },
-  {
     "id": "cali",
     "name": "Calisthenics App",
     "tagline": "Consumer Product",
@@ -194,5 +170,29 @@
       "— Video cues + tempo tracking",
       "— Adaptive next-session planning"
     ]
+  },
+  {
+    "id": "workout-app",
+    "name": "Workout App",
+    "tagline": "Offline home-training app — all premium, zero ads",
+    "type": "Mobile App ",
+    "desc": " Rebuilt Leap’s Home Workout premium as a free offline clone: 80 exercises, 10 programs, injury-aware plan generator, 28-day engine, per-exercise timers, local progress tracking. No account, no server.",
+    "problem": "Paywalled plans blocked my own training; the original also fakes personalization, ignores pulling muscles, and serves mid-workout ads.",
+    "build": "Expo + React Native, SQLite offline-first; dose-string engine drives one universal timer path; GIF resolver with per-ID mapping across free datasets (verified 75 exact, CC photos + hand-drawn SVG for the rest); EAS preview APK + EAS Updates for laptop-free iteration",
+    "stack": [
+      "React Native",
+      "Expo",
+      "SQLite",
+      "Zustand",
+      "EAS Build",
+      "GitHub Actions"
+    ],
+    "metrics": [],
+    "status": "Architecture Live",
+    "color": "#0b8f68",
+    "accent": "bg-[#0b8f68]",
+    "image": "/uploads/1788817993524-5lelqm.png",
+    "link": "https://expo.dev/artifacts/eas/Tsz87Vfhnmwu2E31nDr-EL9Jp_yFVE6Kpr6qfhRVqGk.apk ",
+    "repo": "https://github.com/Ayomi789/workout-clone/"
   }
 ]
