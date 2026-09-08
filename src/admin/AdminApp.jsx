@@ -13,6 +13,7 @@ const EMPTY = {
   metrics: [],
   status: 'In Development',
   inProduction: false,
+  shipped: false,
   arch: [],
   color: '#0b8f68',
   accent: 'bg-[#0b8f68]',
@@ -222,6 +223,7 @@ function AdminPanel() {
       ...project,
       id: project.id || slugify(project.name || '') || `project-${Date.now()}`,
       inProduction: !!project.inProduction,
+      shipped: !!project.shipped,
       arch: (project.arch ?? []).map((l) => l.trim()).filter(Boolean),
       stack: project.stack.filter(Boolean),
       metrics: project.metrics.filter((m) => m.k && m.v),
@@ -517,17 +519,31 @@ function ProjectForm({ initial, originalIndex, onSave, onCancel, saving }) {
         </Field>
       </div>
 
-      <div className="mt-4 flex items-center gap-3 rounded-[10px] border border-[#dde3dd] bg-[#fbfcfa] px-3 py-2.5">
-        <input
-          id="inProduction"
-          type="checkbox"
-          checked={!!p.inProduction}
-          onChange={(e) => setP({ ...p, inProduction: e.target.checked })}
-          className="w-[16px] h-[16px] accent-[#0b8f68]"
-        />
-        <label htmlFor="inProduction" className="text-[13px]">
-          In production <span className="text-[#8a9690]">— counts toward “X in production” on the homepage</span>
-        </label>
+      <div className="mt-4 grid sm:grid-cols-2 gap-3">
+        <div className="flex items-center gap-3 rounded-[10px] border border-[#dde3dd] bg-[#fbfcfa] px-3 py-2.5">
+          <input
+            id="inProduction"
+            type="checkbox"
+            checked={!!p.inProduction}
+            onChange={(e) => setP({ ...p, inProduction: e.target.checked })}
+            className="w-[16px] h-[16px] accent-[#0b8f68]"
+          />
+          <label htmlFor="inProduction" className="text-[13px]">
+            In production <span className="text-[#8a9690]">— “X in production”</span>
+          </label>
+        </div>
+        <div className="flex items-center gap-3 rounded-[10px] border border-[#dde3dd] bg-[#fbfcfa] px-3 py-2.5">
+          <input
+            id="shipped"
+            type="checkbox"
+            checked={!!p.shipped}
+            onChange={(e) => setP({ ...p, shipped: e.target.checked })}
+            className="w-[16px] h-[16px] accent-[#0b8f68]"
+          />
+          <label htmlFor="shipped" className="text-[13px]">
+            Shipped <span className="text-[#8a9690]">— “X systems shipped”</span>
+          </label>
+        </div>
       </div>
 
       <div className="mt-4 grid gap-4">

@@ -22,7 +22,7 @@ const STACK_CHIPS = ['TS', 'Python', 'Postgres', 'Qdrant', 'Redis', 'Docker']
 
 export default function Hero() {
   const [typed, setTyped] = useState('')
-  const shipped = PROJECTS.length
+  const shipped = PROJECTS.filter((p) => p.shipped).length
   const inProd = PROJECTS.filter((p) => p.inProduction).length
 
   useEffect(() => {
