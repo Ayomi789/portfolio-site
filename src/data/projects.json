@@ -93,46 +93,36 @@
   {
     "id": "crm",
     "name": "CRM Ticketing System",
-    "tagline": "Full-Stack Business Software",
+    "tagline": "AI-powered CRM ticketing platform",
     "type": "BUSINESS OS / SAAS",
-    "desc": "End-to-end ticketing and CRM for a real service business. Role-based access, SLA automation, revenue tracking, analytics. Built under real constraints with real users complaining.",
-    "problem": "Founders using spreadsheets and WhatsApp to manage £10k/mo revenue pipeline. Chaos.",
-    "build": "Multi-tenant Postgres, Row Level Security, event-driven automation, real-time dashboards. Deployed and handling 400+ tickets/month.",
+    "desc": "Multi-tenant CRM ticketing: companies get private workspaces, customers file via public links, AI triages urgency and drafts replies, teams resolve with SLA tracking. Email verification, Google OAuth, Paystack billing, Docker deploy.",
+    "problem": "Support teams juggle separate CRM and ticketing tools, losing context on every tab switch — while customers have no way to file complaints except email chaos",
+    "build": "\"Express + Prisma on Neon Postgres with app-level tenant isolation, AI triage/drafting via NVIDIA, Paystack subscriptions with webhook reconciliation, JWT auth with Google OAuth, Dockerized and deployed on Render + Vercel. Verified with 60-assertion E2E suites.\"",
     "stack": [
       "React",
-      "Node.js",
+      "TypeScript",
+      "Tailwind",
+      "Express",
+      "Prisma",
       "PostgreSQL",
-      "Supabase",
-      "Tailwind"
+      "NVIDIA AI",
+      "Paystack",
+      "Docker"
     ],
-    "metrics": [
-      {
-        "k": "tickets handled",
-        "v": "400+/mo"
-      },
-      {
-        "k": "resolution time",
-        "v": "-62%"
-      },
-      {
-        "k": "active users",
-        "v": "11"
-      }
-    ],
-    "status": "In Beta Testing",
+    "metrics": [],
+    "status": "Architecture Live",
     "inProduction": true,
     "shipped": true,
-    "link": "https://ayomi789.github.io/ContextDesk/",
+    "link": "https://context-desk-sigma.vercel.app",
     "repo": "https://github.com/Ayomi789/ContextDesk",
     "color": "#b5aa92",
-    "accent": "bg-[#b5aa92]",
+    "accent": "bg-[#0b8f68]",
     "image": "",
     "arch": [
-      "— Ticket intake → SLA clock starts",
-      "— Role-based views (RLS in Postgres)",
-      "— Event-driven automation triggers",
-      "— Real-time dashboards + revenue",
-      "— 400+ tickets / month in production"
+      "— Public intake links → auto-triaged tickets",
+      "— App-level tenant isolation per organization",
+      "— SLA engine + AI drafting on full thread context",
+      "— Paystack billing with plan enforcement"
     ]
   },
   {
