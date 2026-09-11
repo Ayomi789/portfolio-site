@@ -6,6 +6,7 @@ import path from 'node:path'
 
 const root = path.resolve(__dirname)
 const projectsFile = path.join(root, 'src/data/projects.json')
+const siteFile = path.join(root, 'src/data/site.json')
 const uploadsDir = path.join(root, 'public/uploads')
 
 // Dev-only CMS backend: the /admin panel calls these to persist project data
@@ -27,6 +28,35 @@ function cmsDevPlugin() {
             const projects = JSON.parse(body)
             if (!Array.isArray(projects)) throw new Error('Expected an array of projects')
             fs.writeFileSync(projectsFile, JSON.stringify(projects, null, 2) + '\n')
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ ok: true }))
+            server.ws.send({ type: 'full-reload' })
+            return
+          }
+          res.statusCode = 405
+          res.end('Method not allowed')
+        } catch (err) {
+          res.statusCode = 500
+          res.end(String(err?.message || err))
+        }
+      })
+
+      server.middlewares.use('/api/site', async (req, res) => {
+        try {
+          if (req.method === 'GET') {
+            res.setHeader('Content-Type', 'application/json')
+            res.end(fs.readFileSync(siteFile, 'utf-8'))
+            return
+          }
+          if (req.method === 'PUT') {
+            const body = await readBody(req)
+            const site = JSON.parse(body)
+            if (!site || typeof site !== 'object' || Array.isArray(site)) {
+              throw new Error('Expected a site object')
+            }
+            const raw = JSON.stringify(site, null, 2) + '\n'
+            if (raw.length > 200 * 1024) throw new Error('Site data too large')
+            fs.writeFileSync(siteFile, raw)
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify({ ok: true }))
             server.ws.send({ type: 'full-reload' })

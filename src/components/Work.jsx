@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { PROJECTS } from '../data/projects'
+import { SITE } from '../data/site'
 import NovaVisual from './visuals/NovaVisual'
 import AtlasVisual from './visuals/AtlasVisual'
 import CRMVisual from './visuals/CRMVisual'
@@ -85,18 +86,16 @@ export default function Work() {
         <Reveal>
           <div>
             <div className="font-mono text-[11px] tracking-[0.16em] uppercase text-[#0b8f68] flex items-center gap-2">
-              <span className="w-[6px] h-[6px] rounded-full bg-[#0b8f68]"></span>[01] — SELECTED
-              SYSTEMS
+              <span className="w-[6px] h-[6px] rounded-full bg-[#0b8f68]"></span>{SITE.work.eyebrow}
             </div>
             <h2 className="mt-4 font-serif text-[clamp(32px,4.5vw,56px)] leading-[0.95] tracking-[-0.04em] max-w-[16ch]">
-              {total === 1 ? 'One system.' : `${totalWord} systems.`} Real constraints. Real users.
+              {total === 1 ? 'One system.' : `${totalWord} systems.`} {SITE.work.titleRest}
             </h2>
           </div>
         </Reveal>
         <Reveal delay={120}>
           <div className="max-w-[40ch] font-mono text-[12.5px] leading-[1.7] text-[#5a665d]">
-            No concept work. Each project shipped under time, cost, or user constraints. Click to open
-            build notes.
+            {SITE.work.sub}
           </div>
         </Reveal>
       </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { SITE } from '../data/site'
 
 const NAV = [
   { l: 'Work', h: '#work' },
@@ -32,9 +33,9 @@ export default function Header() {
             AS
           </div>
           <div className="leading-[1.05]">
-            <div className="font-[700] tracking-[-0.03em] text-[14px]">Abdullateef Salako</div>
+            <div className="font-[700] tracking-[-0.03em] text-[14px]">{SITE.header.name}</div>
             <div className="font-mono text-[10px] tracking-[0.08em] uppercase text-[#6b756c]">
-              CS • Lagos / Remote
+              {SITE.header.tagline}
             </div>
           </div>
         </a>
@@ -55,7 +56,7 @@ export default function Header() {
             className="ml-2 inline-flex items-center gap-2 h-[34px] px-4 rounded-full bg-[#101512] text-white text-[12.5px] font-semibold tracking-[-0.01em] hover:bg-[#0f2217] transition"
           >
             <span className="w-[6px] h-[6px] rounded-full bg-[#2fe090] animate-pulse"></span>
-            Available for work
+            {SITE.header.availability}
           </a>
         </nav>
 
@@ -95,7 +96,7 @@ export default function Header() {
             className="mt-2 inline-flex items-center justify-center gap-2 h-[40px] px-4 rounded-full bg-[#101512] text-white text-[13px] font-semibold tracking-[-0.01em]"
           >
             <span className="w-[6px] h-[6px] rounded-full bg-[#2fe090] animate-pulse"></span>
-            Available for work
+            {SITE.header.availability}
           </a>
         </div>
       )}

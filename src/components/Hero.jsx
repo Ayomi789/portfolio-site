@@ -2,23 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import { PROJECTS } from '../data/projects'
+import { SITE } from '../data/site'
 import Reveal from './Reveal'
 
 const TYPED = 'orchestrate_models(['
 
-const HERO_STATS = [
-  { k: 'Focus', v: 'AI Orchestration\n+ App Systems' },
-  { k: 'Currently', v: 'Building Atlas\nKnowledge Graph' },
-  { k: 'Next', v: 'Open sourcing\nNOVA core' },
-]
 
-const CARD_METRICS = [
-  { l: 'req/s', v: '247', sub: '+12%' },
-  { l: 'p95', v: '38ms', sub: 'stable' },
-  { l: 'cost', v: '-$31%', sub: 'this week' },
-]
-
-const STACK_CHIPS = ['TS', 'Python', 'Postgres', 'Qdrant', 'Redis', 'Docker']
 
 export default function Hero() {
   const [typed, setTyped] = useState('')
@@ -53,33 +42,32 @@ export default function Hero() {
                   ↗
                 </span>
                 <span className="font-mono text-[9.5px] sm:hidden tracking-[0.05em] uppercase text-[#3b4640] whitespace-nowrap">
-                  CS Student → Full-Stack & AI Builder
+                  {SITE.hero.badgeShort}
                 </span>
                 <span className="hidden sm:inline font-mono text-[11px] tracking-[0.06em] uppercase text-[#3b4640] whitespace-nowrap">
-                  Computer Science student → Full-stack & AI builder
+                  {SITE.hero.badge}
                 </span>
               </div>
 
               <h1 className="mt-8 font-serif font-[400] leading-[0.92] tracking-[-0.04em] text-[clamp(36px,10vw,92px)]">
-                Building <span className="italic font-[300]">practical</span>
+                {SITE.hero.titleA} <span className="italic font-[300]">{SITE.hero.titleAccent}</span>
                 <br />
-                AI systems
+                {SITE.hero.titleB}
                 <br />
-                that ship.
+                {SITE.hero.titleC}
               </h1>
 
               <div className="mt-8 grid md:grid-cols-[1.1fr_0.9fr] gap-6">
                 <p className="text-[18px] leading-[1.6] tracking-[-0.015em] text-[#2e3831] max-w-[44ch]">
-                  I'm Abdullateef — a full-stack developer obsessed with making AI actually usable. No
-                  wrapper demos. Real software with real users, observability, and edge cases handled.
+                  {SITE.hero.intro}
                 </p>
                 <div className="space-y-4">
                   <div className="flex gap-3">
                     <div className="w-[2px] bg-[#0b8f68] rounded-full"></div>
                     <p className="font-mono text-[12px] leading-[1.6] text-[#4f5a52]">
-                      Philosophy:{' '}
-                      <span className="text-[#101512] font-medium">Show, not tell.</span> If it's not
-                      deployed, it doesn't exist. My work lives in repos, not slides.
+                      {SITE.hero.philosophyLabel}{' '}
+                      <span className="text-[#101512] font-medium">{SITE.hero.philosophyAccent}</span>{' '}
+                      {SITE.hero.philosophyRest}
                     </p>
                   </div>
                   <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.06em] uppercase text-[#6e7a70]">
@@ -94,15 +82,15 @@ export default function Hero() {
                   href="#work"
                   className="h-[46px] sm:h-[44px] rounded-full bg-[#101512] text-white inline-flex items-center justify-center gap-2 font-[600] text-[13.5px] sm:text-[14px] tracking-[-0.01em] hover:bg-[#0f2217] transition shadow-soft"
                 >
-                  View systems →
-                </a>
+                {SITE.hero.primaryCta}
+              </a>
                 <a
-                  href="/cv/AbdullateefSalako_CV.pdf"
+                  href={SITE.cvUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="h-[46px] sm:h-[44px] rounded-full bg-white border border-[#dde3dd] inline-flex items-center justify-center gap-2 font-[600] text-[13.5px] sm:text-[14px] tracking-[-0.01em] hover:border-[#101512] transition"
                 >
-                  Contact / CV <span className="font-mono text-[10px] opacity-60">↗</span>
+                  {SITE.hero.secondaryCta} <span className="font-mono text-[10px] opacity-60">↗</span>
                 </a>
                 <div className="hidden md:inline-flex ml-2 items-center gap-2 h-[44px] px-4 rounded-full bg-[#eaf3ec] border border-[#d6e2d8] font-mono text-[11px]">
                   <span className="w-[6px] h-[6px] rounded-full bg-[#0b8f68] animate-pulse"></span>{' '}
@@ -111,7 +99,7 @@ export default function Hero() {
               </div>
 
               <div className="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-[#dde3dd] grid grid-cols-3 gap-4 sm:gap-6 max-w-[520px]">
-                {HERO_STATS.map((it) => (
+                {SITE.hero.stats.map((it) => (
                   <div key={it.k}>
                     <div className="font-mono text-[10px] tracking-[0.14em] uppercase text-[#8a9690] mb-2">
                       {it.k}
@@ -136,36 +124,36 @@ export default function Hero() {
                       <span className="w-[8px] h-[8px] rounded-full bg-[#ffbd2e]"></span>
                       <span className="w-[8px] h-[8px] rounded-full bg-[#27c93f]"></span>
                     </div>
-                    <span className="font-mono text-[11px] text-[#5e6b60]">nova://orchestrator.ts — main</span>
+                    <span className="font-mono text-[11px] text-[#5e6b60]">{SITE.hero.cardFile}</span>
                   </div>
                   <span className="font-mono text-[10px] px-2 py-1 rounded-full bg-[#101512] text-white">
-                    LIVE
+                    {SITE.hero.cardLive}
                   </span>
                 </div>
 
                 <div className="p-5 font-mono text-[11.5px] leading-[1.7]">
-                  <div className="text-[#7a877e]">// routing layer • cost-aware • fallbacks</div>
+                  <div className="text-[#7a877e]">{SITE.hero.cardComment}</div>
                   <div className="mt-2">
                     <span className="text-[#a0aca1]">1</span>{' '}
                     <span className="text-[#101512]">{typed}</span>
                     <span className="inline-block w-[7px] h-[13px] bg-[#101512] translate-y-[2px] ml-0.5"></span>
                   </div>
-                  <div className="pl-6">
-                    <span className="text-[#0b8f68]">provider:</span>{' '}
-                    <span className="text-[#101512]">'openai'</span>{' '}
-                    <span className="text-[#7a877e]">|</span>{' '}
-                    <span className="text-[#101512]">'anthropic'</span>,
-                  </div>
-                  <div className="pl-6">
-                    <span className="text-[#0b8f68]">fallbackChain:</span> [groq, ollama.local],
-                  </div>
-                  <div className="pl-6">
-                    <span className="text-[#0b8f68]">eval:</span> trace &amp; score,
-                  </div>
+                <div className="pl-6">
+                  <span className="text-[#0b8f68]">provider:</span>{' '}
+                  <span className="text-[#101512]">'{SITE.hero.providerA}'</span>{' '}
+                  <span className="text-[#7a877e]">|</span>{' '}
+                  <span className="text-[#101512]">'{SITE.hero.providerB}'</span>,
+                </div>
+                <div className="pl-6">
+                  <span className="text-[#0b8f68]">fallbackChain:</span> {SITE.hero.fallback}
+                </div>
+                <div className="pl-6">
+                  <span className="text-[#0b8f68]">eval:</span> {SITE.hero.evalLabel}
+                </div>
                   <div className="pl-3">])</div>
 
                   <div className="mt-6 grid grid-cols-3 gap-3">
-                    {CARD_METRICS.map((s) => (
+                    {SITE.hero.cardMetrics.map((s) => (
                       <div
                         key={s.l}
                         className="rounded-[14px] border border-[#e4e9e4] bg-[#fbfcfa] p-3"
@@ -184,12 +172,12 @@ export default function Hero() {
                       ◍
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-[11px] leading-none text-white font-medium">
-                        atlas.query("how does fallback work?")
-                      </div>
-                      <div className="mt-1 text-[10px] opacity-70 truncate">
-                        → Found 3 sources • 94% citation match • 2 graph hops
-                      </div>
+                    <div className="text-[11px] leading-none text-white font-medium">
+                      {SITE.hero.queryTitle}
+                    </div>
+                    <div className="mt-1 text-[10px] opacity-70 truncate">
+                      {SITE.hero.querySub}
+                    </div>
                     </div>
                     <div className="w-[18px] h-[18px] rounded-full bg-[#2fe090] text-[#101512] grid place-items-center text-[10px]">
                       ↗
@@ -198,20 +186,20 @@ export default function Hero() {
                 </div>
 
                 <div className="px-5 py-3 border-t border-[#dde3dd] bg-[#f6f8f6] flex items-center justify-between font-mono text-[10px] tracking-[0.06em] uppercase text-[#6f7b72]">
-                  <span>System diagram / observability on</span>
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-[#0b8f68]"></span> operational
-                  </span>
+                <span>{SITE.hero.cardFooter}</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1 h-1 rounded-full bg-[#0b8f68]"></span> {SITE.hero.cardStatus}
+                </span>
                 </div>
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-3">
                 <div className="rounded-[16px] border border-[#dde3dd] bg-white p-4">
                   <div className="font-mono text-[10px] tracking-[0.12em] uppercase text-[#8a9690]">
-                    Stack depth
+                    {SITE.hero.stackTitle}
                   </div>
                   <div className="mt-3 flex flex-wrap gap-1.5">
-                    {STACK_CHIPS.map((t) => (
+                    {SITE.hero.stackChips.map((t) => (
                       <span
                         key={t}
                         className="px-2 py-1 rounded-full bg-[#f2f5f2] border border-[#e2e8e2] font-mono text-[10px]"
@@ -222,14 +210,14 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="rounded-[16px] border border-[#101512] bg-[#101512] text-white p-4 relative overflow-hidden">
-                  <div className="font-mono text-[10px] tracking-[0.12em] uppercase opacity-60">
-                    Design mantra
-                  </div>
-                  <div className="mt-2 font-serif text-[18px] leading-[1.15]">
-                    Engineered,
-                    <br />
-                    not decorated.
-                  </div>
+                <div className="font-mono text-[10px] tracking-[0.12em] uppercase opacity-60">
+                  {SITE.hero.mantraTitle}
+                </div>
+                <div className="mt-2 font-serif text-[18px] leading-[1.15]">
+                  {SITE.hero.mantraA}
+                  <br />
+                  {SITE.hero.mantraB}
+                </div>
                   <div className="absolute right-3 bottom-3 w-[28px] h-[28px] rounded-full border border-white/20 grid place-items-center">
                     ✦
                   </div>

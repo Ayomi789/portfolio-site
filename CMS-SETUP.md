@@ -4,8 +4,10 @@
 
 The admin panel at **`/admin`** works in two modes:
 
-- **Local (`npm run dev`)** — saves write straight to `src/data/projects.json` and the site hot-reloads.
-- **Remote (deployed site)** — saves ask for a password, commit `projects.json` (+ any uploaded images) to the GitHub repo, and Vercel rebuilds the live site automatically (~1 min). This means you can update projects from any browser.
+- **Local (`npm run dev`)** — saves write straight to `src/data/*.json` and the site hot-reloads.
+- **Remote (deployed site)** — saves ask for a password, commit `projects.json` / `site.json` (+ any uploaded images) to the GitHub repo, and Vercel rebuilds the live site automatically (~1 min). This means you can update projects from any browser.
+
+The panel has two tabs: **Projects** (cards, metrics, visuals, shipped/in-production flags) and **Site & Links** (contact email, CV URL, GitHub, LinkedIn).
 
 ## One-time deployment setup
 

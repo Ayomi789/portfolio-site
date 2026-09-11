@@ -1,18 +1,14 @@
-
-
 import { useState } from 'react'
 import Reveal from './Reveal'
+import { SITE } from '../data/site'
 
-const EMAIL = 'abdullateef.salako6@gmail.com'
+const EMAIL = SITE.email
 
-const INTRO_ROWS = [
-  { k: 'You are', p: 'A team building AI infra, devtools, or practical B2B software' },
-  { k: 'I am', p: 'Full-stack & AI systems generalist who ships end-to-end' },
-  { k: 'We should talk if', p: 'You value production-ready systems over prototypes' },
-]
+const lines = (block) => (block?.lines ?? []).filter((l) => l.trim() !== '')
 
 export default function Contact() {
   const [copied, setCopied] = useState(false)
+  const c = SITE.contact
 
   const copyEmail = () => {
     navigator.clipboard.writeText(EMAIL)
@@ -26,16 +22,15 @@ export default function Contact() {
         <Reveal className="lg:col-span-6">
           <div>
             <div className="font-mono text-[11px] tracking-[0.16em] uppercase text-[#0b8f68]">
-              [04] — CONTACT
+              {c.eyebrow}
             </div>
             <h2 className="mt-4 font-serif text-[clamp(32px,4.5vw,52px)] leading-[0.9] tracking-[-0.04em]">
-              Let's build
+              {c.titleA}
               <br />
-              something practical.
+              {c.titleB}
             </h2>
             <p className="mt-5 text-[15px] leading-[1.7] text-[#3d4a40] max-w-[42ch]">
-              I'm looking for teams building real AI products, not AI demos. If you're shipping
-              software that needs to work in production — reach out.
+              {c.text}
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3">
@@ -46,7 +41,7 @@ export default function Contact() {
                 {copied ? 'Copied ✓' : EMAIL} <span className="opacity-60">⎘</span>
               </button>
               <a
-                href="https://github.com/Ayomi789"
+                href={SITE.github}
                 target="_blank"
                 rel="noreferrer"
                 className="h-[46px] sm:h-[44px] px-5 rounded-full bg-white border border-[#dde3dd] inline-flex items-center justify-center gap-2 font-[600] text-[13px] hover:border-[#101512] transition"
@@ -54,7 +49,7 @@ export default function Contact() {
                 GitHub ↗
               </a>
               <a
-                href="https://www.linkedin.com/in/abdullateef-salako-18764b2a9"
+                href={SITE.linkedin}
                 target="_blank"
                 rel="noreferrer"
                 className="h-[46px] sm:h-[44px] px-5 rounded-full bg-white border border-[#dde3dd] inline-flex items-center justify-center gap-2 font-[600] text-[13px] hover:border-[#101512] transition"
@@ -68,14 +63,14 @@ export default function Contact() {
           <div className="rounded-[24px] border border-[#dde3dd] bg-white p-6 lg:p-8 shadow-card">
             <div className="flex items-center justify-between">
               <div className="font-mono text-[11px] tracking-[0.12em] uppercase text-[#8a9690]">
-                Quick intro
+                {c.introLabel}
               </div>
               <div className="font-mono text-[10px] px-2 py-1 rounded-full bg-[#eef4ef]">
-                Response {'<'} 12h
+                {c.response}
               </div>
             </div>
             <div className="mt-6 space-y-4">
-              {INTRO_ROWS.map((r) => (
+              {c.introRows.map((r) => (
                 <div
                   key={r.k}
                   className="grid grid-cols-[92px_1fr] sm:grid-cols-[110px_1fr] gap-3 sm:gap-4 text-[13px] sm:text-[13.5px] leading-[1.5] py-3 border-b border-[#eef1ee] last:border-0"
@@ -89,21 +84,27 @@ export default function Contact() {
             </div>
             <div className="mt-6 grid grid-cols-2 gap-3 font-mono text-[11px]">
               <div className="rounded-[12px] bg-[#101512] text-white p-4">
-                <div className="opacity-60 uppercase tracking-[0.08em] text-[10px]">Location</div>
+                <div className="opacity-60 uppercase tracking-[0.08em] text-[10px]">{c.location.title}</div>
                 <div className="mt-1">
-                  Lagos, Nigeria
-                  <br />
-                  Open to remote
+                  {lines(c.location).map((l, i) => (
+                    <span key={i}>
+                      {i > 0 && <br />}
+                      {l}
+                    </span>
+                  ))}
                 </div>
               </div>
               <div className="rounded-[12px] bg-[#f3f5f3] border border-[#dde3dd] p-4">
                 <div className="opacity-60 uppercase tracking-[0.08em] text-[10px]">
-                  Availability
+                  {c.availability.title}
                 </div>
                 <div className="mt-1 text-[#101512] font-[600]">
-                  Intern / New Grad
-                  <br />
-                  Full-time • Summer 2026
+                  {lines(c.availability).map((l, i) => (
+                    <span key={i}>
+                      {i > 0 && <br />}
+                      {l}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -113,12 +114,12 @@ export default function Contact() {
 
       <div className="border-t border-[#dde3dd]">
         <div className="max-w-[1360px] mx-auto px-6 lg:px-10 min-h-[64px] py-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 font-mono text-[10px] sm:text-[11px] tracking-[0.06em] uppercase text-[#7a877e]">
-          <div className="max-w-full">© {new Date().getFullYear()} Abdullateef Salako — Built with intention, not templates.</div>
+          <div className="max-w-full">© {new Date().getFullYear()} {c.footerName} — {c.footerNote}</div>
           <div className="hidden md:flex items-center gap-6">
             <span className="flex items-center gap-1.5">
-              <span className="w-1 h-1 rounded-full bg-[#0b8f68]"></span> All systems operational
+              <span className="w-1 h-1 rounded-full bg-[#0b8f68]"></span> {c.footerStatus}
             </span>
-            <span>Engineered, not decorated</span>
+            <span>{c.footerTag}</span>
           </div>
         </div>
       </div>

@@ -62,10 +62,16 @@ export default async function handler(req, res) {
 
     const repo = process.env.GITHUB_REPO || REPO_DEFAULT
     const branch = process.env.GITHUB_BRANCH || 'main'
-    const { projects, uploads = [] } = req.body || {}
+    const { projects, site, uploads = [] } = req.body || {}
 
-    if (!Array.isArray(projects)) {
+    if (projects !== undefined && !Array.isArray(projects)) {
       return res.status(400).json({ error: 'Expected projects array' })
+    }
+    if (site !== undefined && (!site || typeof site !== 'object' || Array.isArray(site))) {
+      return res.status(400).json({ error: 'Expected site object' })
+    }
+    if (projects === undefined && site === undefined) {
+      return res.status(400).json({ error: 'Nothing to save' })
     }
     if (uploads.length > 8) {
       return res.status(400).json({ error: 'Too many uploads in one save' })
@@ -83,14 +89,37 @@ export default async function handler(req, res) {
       await putFile(token, repo, branch, `public${up.path}`, binary, `cms: upload image`)
     }
 
-    await putFile(
-      token,
-      repo,
-      branch,
-      'src/data/projects.json',
-      JSON.stringify(projects, null, 2) + '\n',
-      'cms: update projects'
-    )
+    if (projects !== undefined) {
+      await putFile(
+        token,
+        repo,
+        branch,
+        'src/data/projects.json',
+        JSON.stringify(projects, null, 2) + '\n',
+        'cms: update projects'
+      )
+    }
+
+    if (site !== undefined) {
+      const SITE_STRING_KEYS = ['email', 'github', 'linkedin', 'cvUrl']
+      const SITE_OBJECT_KEYS = ['header', 'hero', 'work', 'philosophy', 'systems', 'contact']
+      for (const k of [...SITE_STRING_KEYS, ...SITE_OBJECT_KEYS]) {
+        if (site[k] === undefined) {
+          return res.status(400).json({ error: `site.${k} is missing` })
+        }
+      }
+      for (const k of SITE_STRING_KEYS) {
+        if (typeof site[k] !== 'string') {
+          return res.status(400).json({ error: `site.${k} must be a string` })
+        }
+        site[k] = site[k].slice(0, 500)
+      }
+      const rawSite = JSON.stringify(site, null, 2) + '\n'
+      if (rawSite.length > 200 * 1024) {
+        return res.status(400).json({ error: 'Site data too large' })
+      }
+      await putFile(token, repo, branch, 'src/data/site.json', rawSite, 'cms: update site')
+    }
 
     return res.status(200).json({ ok: true })
   } catch (err) {

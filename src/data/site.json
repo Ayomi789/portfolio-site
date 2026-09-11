@@ -1,0 +1,102 @@
+{
+  "email": "abdullateef.salako6@gmail.com",
+  "github": "https://github.com/Ayomi789",
+  "linkedin": "https://www.linkedin.com/in/abdullateef-salako-18764b2a9",
+  "cvUrl": "/cv/AbdullateefSalako_CV.pdf",
+  "header": {
+    "name": "Abdullateef Salako",
+    "tagline": "CS • Lagos / Remote",
+    "availability": "Available for work"
+  },
+  "hero": {
+    "badge": "Computer Science student → Full-stack & AI builder",
+    "badgeShort": "CS Student → Full-Stack & AI Builder",
+    "titleA": "Building",
+    "titleAccent": "practical",
+    "titleB": "AI systems",
+    "titleC": "that ship.",
+    "intro": "I'm Abdullateef — a full-stack developer obsessed with making AI actually usable. No wrapper demos. Real software with real users, observability, and edge cases handled.",
+    "philosophyLabel": "Philosophy:",
+    "philosophyAccent": "Show, not tell.",
+    "philosophyRest": "If it's not deployed, it doesn't exist. My work lives in repos, not slides.",
+    "location": "Based in Lagos • Remote • GMT",
+    "primaryCta": "View systems →",
+    "secondaryCta": "Contact / CV",
+    "stats": [
+      { "k": "Focus", "v": "AI Orchestration\n+ App Systems" },
+      { "k": "Currently", "v": "Building Atlas\nKnowledge Graph" },
+      { "k": "Next", "v": "Open sourcing\nNOVA core" }
+    ],
+    "cardFile": "nova://orchestrator.ts — main",
+    "cardLive": "LIVE",
+    "cardComment": "// routing layer • cost-aware • fallbacks",
+    "providerA": "openai",
+    "providerB": "anthropic",
+    "fallback": "[groq, ollama.local],",
+    "evalLabel": "trace & score,",
+    "cardMetrics": [
+      { "l": "req/s", "v": "247", "sub": "+12%" },
+      { "l": "p95", "v": "38ms", "sub": "stable" },
+      { "l": "cost", "v": "-$31%", "sub": "this week" }
+    ],
+    "queryTitle": "atlas.query(\"how does fallback work?\")",
+    "querySub": "→ Found 3 sources • 94% citation match • 2 graph hops",
+    "cardFooter": "System diagram / observability on",
+    "cardStatus": "operational",
+    "stackTitle": "Stack depth",
+    "stackChips": ["TS", "Python", "Postgres", "Qdrant", "Redis", "Docker"],
+    "mantraTitle": "Design mantra",
+    "mantraA": "Engineered,",
+    "mantraB": "not decorated."
+  },
+  "work": {
+    "eyebrow": "[01] — SELECTED SYSTEMS",
+    "titleRest": "Real constraints. Real users.",
+    "sub": "No concept work. Each project shipped under time, cost, or user constraints. Click to open build notes."
+  },
+  "philosophy": {
+    "eyebrow": "[02] — PHILOSOPHY",
+    "titleA": "Show, don't tell.",
+    "titleAccent": "Build systems.",
+    "text": "I'm an ambitious Computer Science student becoming a serious full-stack and AI systems developer — by doing the work. Not by describing it.",
+    "principles": [
+      { "t": "Show, not tell", "d": "Portfolio > resume. Real users > mock data. Ship software that solves a real problem first, then talk about it." },
+      { "t": "Practical over possible", "d": "AI is not magic. It's plumbing, evals, fallbacks, and edge cases. I build systems that work when the demo ends." },
+      { "t": "Systematic, not clever", "d": "Clean architecture, boring tech where it counts, clear naming. Code is written for the next engineer, who is future-me." },
+      { "t": "Build in public, ship in private", "d": "Share the learning. Keep the craft serious. Document the tradeoffs, not just the outcomes." }
+    ]
+  },
+  "systems": {
+    "eyebrow": "[03] — CAPABILITIES",
+    "titleA": "Full-stack scope.",
+    "titleB": "Systems depth.",
+    "badge": "Currently: Third year CS — Graduating 2028",
+    "groups": [
+      { "h": "Frontend", "items": ["React / Next.js", "TypeScript", "Tailwind", "Expo / RN", "Framer Motion"] },
+      { "h": "Backend & Data", "items": ["Node.js", "Python / FastAPI", "PostgreSQL / RLS", "Supabase", "Redis / Queues"] },
+      { "h": "AI Systems", "items": ["LLM Orchestration", "RAG / Qdrant", "LangChain", "Model Eval & Tracing", "Prompt Systems"] },
+      { "h": "Infra & Ship", "items": ["Docker", "Vercel / Fly", "GitHub Actions", "Observability", "Product Analytics"] }
+    ],
+    "chips": ["TypeScript-first", "Tested", "Documented"],
+    "note": "— I care about maintainability more than cleverness."
+  },
+  "contact": {
+    "eyebrow": "[04] — CONTACT",
+    "titleA": "Let's build",
+    "titleB": "something practical.",
+    "text": "I'm looking for teams building real AI products, not AI demos. If you're shipping software that needs to work in production — reach out.",
+    "introLabel": "Quick intro",
+    "response": "Response < 12h",
+    "introRows": [
+      { "k": "You are", "p": "A team building AI infra, devtools, or practical B2B software" },
+      { "k": "I am", "p": "Full-stack & AI systems generalist who ships end-to-end" },
+      { "k": "We should talk if", "p": "You value production-ready systems over prototypes" }
+    ],
+    "location": { "title": "Location", "lines": ["Lagos, Nigeria", "Open to remote"] },
+    "availability": { "title": "Availability", "lines": ["Intern / New Grad", "Full-time • Summer 2026"] },
+    "footerName": "Abdullateef Salako",
+    "footerNote": "Built with intention, not templates.",
+    "footerStatus": "All systems operational",
+    "footerTag": "Engineered, not decorated"
+  }
+}

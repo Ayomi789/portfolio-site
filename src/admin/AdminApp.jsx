@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import rawProjects from '../data/projects.json'
+import rawSite from '../data/site.json'
+import { useSiteDoc } from './fields'
+import HeroTab from './tabs/HeroTab'
+import WorkTab from './tabs/WorkTab'
+import PhilosophyTab from './tabs/PhilosophyTab'
+import SystemsTab from './tabs/SystemsTab'
+import ContactTab from './tabs/ContactTab'
 
 const EMPTY = {
   id: '',
@@ -142,9 +149,11 @@ function LoginScreen({ onAuthed }) {
 function AdminPanel() {
   const [projects, setProjects] = useState(null)
   const [editing, setEditing] = useState(null) // null = list view, { project, index } = editing a copy
+  const [tab, setTab] = useState('projects')
   const [saving, setSaving] = useState(false)
   const [toast, setToast] = useState('')
   const isDev = import.meta.env.DEV
+  const [siteDoc, setSiteDoc] = useSiteDoc(isDev)
 
   useEffect(() => {
     if (!isDev) {
@@ -163,6 +172,35 @@ function AdminPanel() {
     setTimeout(() => setToast(''), 2500)
   }
 
+  async function postSave(body) {
+    const password = getPassword(false)
+    if (!password) throw new Error('Password required')
+    const send = (pw) =>
+      fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Password': pw },
+        body: JSON.stringify(body),
+      })
+    let res = await send(password)
+    if (res.status === 401) {
+      localStorage.removeItem('cms-password')
+      const retry = getPassword(true)
+      if (!retry) throw new Error('Password required')
+      res = await send(retry)
+      if (res.status === 401) throw new Error('Wrong password')
+    }
+    if (!res.ok) {
+      let message = `Save failed (${res.status})`
+      try {
+        const data = await res.json()
+        if (data.error) message = data.error
+      } catch {
+        /* keep default */
+      }
+      throw new Error(message)
+    }
+  }
+
   async function persist(next, msg) {
     setSaving(true)
     try {
@@ -174,30 +212,35 @@ function AdminPanel() {
         })
         if (!res.ok) throw new Error(await res.text())
       } else {
-        const uploads = [...pendingUploads.entries()].map(([path, data]) => ({ path, data }))
-        const password = getPassword(false)
-        if (!password) throw new Error('Password required')
-        const res = await fetch('/api/save', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'X-Admin-Password': password },
-          body: JSON.stringify({ projects: next, uploads }),
+        const staged = [...pendingUploads.entries()]
+        await postSave({
+          projects: next,
+          uploads: staged.map(([path, data]) => ({ path, data })),
         })
-        if (res.status === 401) {
-          localStorage.removeItem('cms-password')
-          const retry = getPassword(true)
-          if (!retry) throw new Error('Password required')
-          const res2 = await fetch('/api/save', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-Admin-Password': retry },
-            body: JSON.stringify({ projects: next, uploads }),
-          })
-          if (!res2.ok) throw new Error((await res2.json()).error || `Save failed (${res2.status})`)
-        } else if (!res.ok) {
-          throw new Error((await res.json()).error || `Save failed (${res.status})`)
-        }
-        uploads.forEach(([path]) => pendingUploads.delete(path))
+        staged.forEach(([path]) => pendingUploads.delete(path))
       }
       setProjects(next)
+      flash(isDev ? msg : msg + ' — committed, site rebuilding (~1 min)')
+    } catch (err) {
+      flash(`Save failed: ${err.message}`)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  async function persistSite(site, msg = 'Site links updated') {
+    setSaving(true)
+    try {
+      if (isDev) {
+        const res = await fetch('/api/site', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(site),
+        })
+        if (!res.ok) throw new Error(await res.text())
+      } else {
+        await postSave({ site })
+      }
       flash(isDev ? msg : msg + ' — committed, site rebuilding (~1 min)')
     } catch (err) {
       flash(`Save failed: ${err.message}`)
@@ -265,10 +308,37 @@ function AdminPanel() {
 
         <div className="mt-4 font-mono text-[11px] text-[#7a877e]">
           {isDev ? (
-            <>Local mode — saves write to src/data/projects.json instantly.</>
+            <>Local mode — saves write to src/data/*.json instantly.</>
           ) : (
             <>Remote mode — saves commit to GitHub with your password and the site redeploys automatically.</>
           )}
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-x-2 border-b border-[#dde3dd]">
+          {[
+            ['projects', 'Projects'],
+            ['hero', 'Hero'],
+            ['work', 'Work'],
+            ['philosophy', 'Philosophy'],
+            ['systems', 'Systems'],
+            ['contact', 'Contact'],
+            ['site', 'Site & Links'],
+          ].map(([key, label]) => (
+            <button
+              key={key}
+              onClick={() => {
+                setTab(key)
+                setEditing(null)
+              }}
+              className={`pb-3 pr-6 font-mono text-xs tracking-[0.15em] uppercase transition-colors ${
+                tab === key
+                  ? 'text-[#101512] border-b-2 border-[#0b8f68] -mb-px'
+                  : 'text-[#8a9690] hover:text-[#101512]'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
 
         {toast && (
@@ -277,7 +347,19 @@ function AdminPanel() {
           </div>
         )}
 
-        {editing ? (
+        {tab === 'hero' ? (
+          <HeroTab doc={siteDoc} setDoc={setSiteDoc} saving={saving} onSave={persistSite} />
+        ) : tab === 'work' ? (
+          <WorkTab doc={siteDoc} setDoc={setSiteDoc} saving={saving} onSave={persistSite} />
+        ) : tab === 'philosophy' ? (
+          <PhilosophyTab doc={siteDoc} setDoc={setSiteDoc} saving={saving} onSave={persistSite} />
+        ) : tab === 'systems' ? (
+          <SystemsTab doc={siteDoc} setDoc={setSiteDoc} saving={saving} onSave={persistSite} />
+        ) : tab === 'contact' ? (
+          <ContactTab doc={siteDoc} setDoc={setSiteDoc} saving={saving} onSave={persistSite} />
+        ) : tab === 'site' ? (
+          <SiteLinksForm isDev={isDev} saving={saving} onSave={persistSite} />
+        ) : editing ? (
           <ProjectForm
             initial={editing.project ?? editing}
             originalIndex={editing.project ? editing.index : -1}
@@ -326,6 +408,82 @@ function AdminPanel() {
             : 'Each save commits projects.json (and any new images) to the portfolio repo; Vercel rebuilds the live site automatically.'}
         </div>
       </div>
+    </div>
+  )
+}
+
+function SiteLinksForm({ isDev, saving, onSave }) {
+  const [form, setForm] = useState(null)
+
+  useEffect(() => {
+    if (!isDev) {
+      // Production: the current links are baked into this build.
+      setForm({ ...rawSite })
+      return
+    }
+    fetch('/api/site')
+      .then((r) => r.json())
+      .then(setForm)
+      .catch(() => setForm({ ...rawSite }))
+  }, [isDev])
+
+  if (!form) {
+    return <div className="mt-8 font-mono text-[12px] text-[#7a877e]">Loading…</div>
+  }
+
+  const set = (k) => (e) => setForm({ ...form, [k]: e.target.value })
+
+  return (
+    <div className="mt-8 rounded-[20px] border border-[#dde3dd] bg-white p-6 lg:p-8">
+      <div className="flex items-center justify-between">
+        <h2 className="font-[700] text-[18px] tracking-[-0.02em]">Site & links</h2>
+        <button
+          onClick={() => onSave(form)}
+          disabled={saving}
+          className="px-5 py-2.5 rounded-full bg-[#101512] text-white text-[13px] font-[600] hover:opacity-90 disabled:opacity-40"
+        >
+          {saving ? 'Saving…' : 'Save changes'}
+        </button>
+      </div>
+      <div className="mt-6 grid sm:grid-cols-2 gap-4">
+        <Field label="Contact email">
+          <input
+            className={inputCls}
+            value={form.email ?? ''}
+            onChange={set('email')}
+            placeholder="you@example.com"
+          />
+        </Field>
+        <Field label="CV / resume URL">
+          <input
+            className={inputCls}
+            value={form.cvUrl ?? ''}
+            onChange={set('cvUrl')}
+            placeholder="/cv/AbdullateefSalako_CV.pdf"
+          />
+        </Field>
+        <Field label="GitHub URL">
+          <input
+            className={inputCls}
+            value={form.github ?? ''}
+            onChange={set('github')}
+            placeholder="https://github.com/…"
+          />
+        </Field>
+        <Field label="LinkedIn URL">
+          <input
+            className={inputCls}
+            value={form.linkedin ?? ''}
+            onChange={set('linkedin')}
+            placeholder="https://linkedin.com/in/…"
+          />
+        </Field>
+      </div>
+      <p className="mt-4 font-mono text-[11px] text-[#8a9690]">
+        {isDev
+          ? 'Writes to src/data/site.json and reloads the site'
+          : 'Commits to GitHub and redeploys the live site'}
+      </p>
     </div>
   )
 }
