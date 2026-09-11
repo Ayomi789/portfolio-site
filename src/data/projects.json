@@ -111,7 +111,7 @@
     ],
     "metrics": [],
     "status": "Architecture Live",
-    "inProduction": true,
+    "inProduction": false,
     "shipped": true,
     "link": "https://context-desk-sigma.vercel.app",
     "repo": "https://github.com/Ayomi789/ContextDesk",
