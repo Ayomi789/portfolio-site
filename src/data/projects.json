@@ -206,5 +206,50 @@
       "— Video cues + tempo tracking",
       "— Adaptive next-session planning"
     ]
+  },
+  {
+    "id": "sentinel",
+    "name": "Sentinel",
+    "tagline": "AI agent that pentests websites — vulnerabilities, bugs, broken flows",
+    "type": "AI SYSTEMS / INFRA ",
+    "desc": "Autonomous website security scanner. Point it at a domain and it crawls, probes for XSS, SQLi, auth bypass and exposed secrets, then seals a severity-ranked report with evidence. React console + Flask engine, deployed on Render.",
+    "problem": "Security testing a release meant slow manual clicks or noisy scanners that cry wolf. I wanted one loop that browses like a user, probes like an attacker, verifies deterministically before reporting, and shows its work — so a solo dev can gate releases on real findings, not alert spam.",
+    "build": "LLM is the brain, deterministic code is the hands: the model picks the next test, verified Python tools do the clicking, probing and asserting. Passive checks plus ~60-file sensitive-artifact wordlist run every scan; a Playwright browser loop adds exploration. Reports seal as Markdown/JSON/HTML/CSV with new-vs-fixed baseline diffing for CI gates.",
+    "stack": [
+      "Python",
+      "Playwright",
+      "Flask",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "gunicorn",
+      "Render"
+    ],
+    "metrics": [
+      {
+        "k": " tests passing  ",
+        "v": "126/126 "
+      },
+      {
+        "k": "deterministic findings (demo)",
+        "v": "15 per scan"
+      }
+    ],
+    "status": "Architecture Live",
+    "inProduction": false,
+    "shipped": true,
+    "arch": [
+      "→ React console (Vite + Tailwind, served same-origin)",
+      "→ Flask API + dashboard (sessions, invites, quotas)",
+      "→ Agent core (observe → think → act → verify)",
+      "→ Tool layer (navigate, click, fill, probe, assert)",
+      "→ Playwright Chromium + httpx probes",
+      "→ Evidence store → severity-ranked reports"
+    ],
+    "color": "#0b8f68",
+    "accent": "bg-[#0b8f68]",
+    "image": "",
+    "link": "sentinel-n3wl.onrender.com",
+    "repo": "https://github.com/Ayomi789/AiAgent"
   }
 ]
