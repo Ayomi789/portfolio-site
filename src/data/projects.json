@@ -164,50 +164,6 @@
     "repo": "https://github.com/Ayomi789/workout-clone/"
   },
   {
-    "id": "cali",
-    "name": "Calisthenics App",
-    "tagline": "Consumer Product",
-    "type": "MOBILE / CONSUMER",
-    "desc": "Progressive calisthenics training focused on skill acquisition, not random workouts. Program logic that adapts based on prerequisite strength, form cues, and actual progression.",
-    "problem": "Existing apps: generic push-up counters or influencer PDFs. No system to get to muscle-up.",
-    "build": "Expo + Supabase realtime. Custom progression engine that unlocks skills only when strength standards verified. Video cues, tempo tracking.",
-    "stack": [
-      "React Native",
-      "Expo",
-      "Supabase",
-      "Reanimated 3"
-    ],
-    "metrics": [
-      {
-        "k": "exercise library",
-        "v": "180+"
-      },
-      {
-        "k": "workouts logged",
-        "v": "1.2k beta"
-      },
-      {
-        "k": "retention w3",
-        "v": "61%"
-      }
-    ],
-    "status": "In Development",
-    "inProduction": true,
-    "shipped": false,
-    "link": "https://ayomi789.github.io/Calisthenics-App/",
-    "repo": "https://github.com/Ayomi789/Calisthenics-App",
-    "color": "#dbe2dc",
-    "accent": "bg-[#090908]",
-    "image": "",
-    "arch": [
-      "— Skill tree with strength prereqs",
-      "— Progression engine gates unlocks",
-      "— Session logging via Supabase RT",
-      "— Video cues + tempo tracking",
-      "— Adaptive next-session planning"
-    ]
-  },
-  {
     "id": "sentinel",
     "name": "Sentinel",
     "tagline": "AI agent that pentests websites — vulnerabilities, bugs, broken flows",
@@ -251,5 +207,49 @@
     "image": "",
     "link": "sentinel-n3wl.onrender.com",
     "repo": "https://github.com/Ayomi789/AiAgent"
+  },
+  {
+    "id": "cali",
+    "name": "Calisthenics App",
+    "tagline": "Consumer Product",
+    "type": "MOBILE / CONSUMER",
+    "desc": "Progressive calisthenics training focused on skill acquisition, not random workouts. Program logic that adapts based on prerequisite strength, form cues, and actual progression.",
+    "problem": "Existing apps: generic push-up counters or influencer PDFs. No system to get to muscle-up.",
+    "build": "Expo + Supabase realtime. Custom progression engine that unlocks skills only when strength standards verified. Video cues, tempo tracking.",
+    "stack": [
+      "React Native",
+      "Expo",
+      "Supabase",
+      "Reanimated 3"
+    ],
+    "metrics": [
+      {
+        "k": "exercise library",
+        "v": "180+"
+      },
+      {
+        "k": "workouts logged",
+        "v": "1.2k beta"
+      },
+      {
+        "k": "retention w3",
+        "v": "61%"
+      }
+    ],
+    "status": "In Development",
+    "inProduction": true,
+    "shipped": false,
+    "link": "https://ayomi789.github.io/Calisthenics-App/",
+    "repo": "https://github.com/Ayomi789/Calisthenics-App",
+    "color": "#dbe2dc",
+    "accent": "bg-[#090908]",
+    "image": "",
+    "arch": [
+      "— Skill tree with strength prereqs",
+      "— Progression engine gates unlocks",
+      "— Session logging via Supabase RT",
+      "— Video cues + tempo tracking",
+      "— Adaptive next-session planning"
+    ]
   }
 ]
